@@ -1135,13 +1135,7 @@ footer {
 
       <div class="widget">
         <div class="widget-title">About This Blog</div>
-        <p class="about-text">Independent OSINT research by <strong>Sultan Aben</strong>. Every claim is backed by primary sources — official statements, geolocated video, social posts, or direct observation. No news aggregators cited.</p>
-        <p class="about-text">Confidence levels assigned to each post: <strong>High / Medium / Low</strong>.</p>
-        <div class="about-tags">
-          <span class="about-tag">Conflict / War</span>
-          <span class="about-tag">Imagery Analysis</span>
-          <span class="about-tag">Telegram SIGINT</span>
-        </div>
+        <p class="about-text">Independent OSINT research by <strong>Sultan Aben</strong>. Every claim is sourced — official statements, geolocated footage, primary documents, or named reporting from wire services. No anonymous aggregators, no unsourced assertions.</p>
       </div>
 
       <div class="widget">
@@ -1153,11 +1147,11 @@ footer {
 
       <div class="widget">
         <div class="widget-title">Methodology</div>
-        <div class="method-item"><span class="method-icon">◎</span><span>Geolocate footage against satellite imagery (Google Earth, Sentinel Hub)</span></div>
-        <div class="method-item"><span class="method-icon">◷</span><span>Verify timestamps using SunCalc shadow analysis</span></div>
-        <div class="method-item"><span class="method-icon">—</span><span>Primary sources only: Telegram channels, X posts, official statements</span></div>
-        <div class="method-item"><span class="method-icon">⌕</span><span>Reverse image/video search via TinEye &amp; InVID</span></div>
-        <div class="method-item"><span class="method-icon">⊕</span><span>Cross-reference minimum 2 independent sources per claim</span></div>
+        <div class="method-item"><span class="method-icon">◎</span><span>Geolocation of footage against satellite imagery (Google Earth, Sentinel Hub)</span></div>
+        <div class="method-item"><span class="method-icon">◷</span><span>Timestamp verification via SunCalc shadow analysis on time-sensitive footage</span></div>
+        <div class="method-item"><span class="method-icon">—</span><span>Munitions and equipment identification against open-source reference databases</span></div>
+        <div class="method-item"><span class="method-icon">⌕</span><span>Source assessment across Telegram channels, X, wire services, and official statements</span></div>
+        <div class="method-item"><span class="method-icon">⊕</span><span>Minimum two independent sources per factual claim; confidence levels assigned accordingly</span></div>
       </div>
 
       <div class="widget">
@@ -2234,6 +2228,64 @@ let posts = [
     { platform: 'official', handle: 'USNI News / Defense News — Charles de Gaulle CSG deployed to eastern Med, 8 frigates and 2 LHDs announced 9 March, Languedoc off Cyprus, Rafales active UAE, two frigates to EUNAVFOR Aspides', quote: '', timestamp: '09 Mar 2026', url: 'https://news.usni.org/2026/03/09/french-navy-pledges-10-additional-warships-to-middle-east-escorts-for-strait-of-hormuz' }
   ]
 },{
+  id: 59,
+  category: 'strike',
+  confidence: 'high',
+  tags: ['Iran', 'Middle East'],
+  date: '13 Mar 2026, 12:00 UTC',
+  title: 'A US KC-135 went down in western Iraq with six aboard. CENTCOM ruled out hostile fire. The Islamic Resistance of Iraq claimed it anyway.',
+  deck: 'A US Air Force KC-135 Stratotanker crashed in western Iraq on 12 March during Operation Epic Fury, killing all six crew members. A second KC-135 involved in the same incident was damaged but landed safely — reportedly declaring an emergency before landing in Tel Aviv. CENTCOM confirmed the loss was not due to hostile or friendly fire and said circumstances remain under investigation. US officials told CBS News a mid-air collision may be involved. The Islamic Resistance in Iraq claimed it downed both aircraft.',
+  body: `The KC-135 Stratotanker is not a combat aircraft. It is a flying fuel station — a Boeing-derived tanker whose entire operational purpose is to extend the range and loiter time of the fighter jets and bombers that are conducting strikes. It carries a standard crew of three to four: pilot, copilot, and one or more boom operators who physically connect the refuelling line to receiving aircraft. The aircraft that went down on 12 March carried six crew members, all of whom have since been confirmed to have not survived.
+
+CENTCOM's statement was explicit on one point and silent on everything else. The loss was not due to hostile fire or friendly fire. The circumstances are under investigation. That is the entirety of what the US military has said publicly about cause. What CBS News subsequently reported — that US officials believe the incident may have involved a mid-air collision — suggests the two KC-135s involved were operating in close proximity when something went wrong. The second aircraft was damaged and declared an emergency before landing safely, reportedly in Tel Aviv according to FlightRadar24 tracking data. A mid-air collision between two tankers conducting coordinated refuelling operations in congested airspace is a plausible mechanism. CENTCOM has not confirmed it.
+
+The Islamic Resistance in Iraq, the Iran-backed umbrella group of Iraqi militias, claimed responsibility for downing both aircraft. The claim is specific: it says it targeted a KC-135, forced a second to make an emergency landing, and takes credit for both outcomes. CENTCOM's ruling of hostile and friendly fire as causes does not leave much room for the IRI's account to be accurate. But the claim is worth noting precisely because it is specific (two aircraft, two outcomes) and because the IRI has both the motivation and, arguably, a degree of capability to attempt such an attack via drone or missile. Western Iraq is sparsely populated desert and has seen IRI drone activity, though attacks in that region have historically been less frequent than in the north. The crash site was near Turaibil, on the Iraqi-Jordanian border.
+
+This is the fourth publicly acknowledged US aircraft loss of Operation Epic Fury, and the first with fatalities from an aviation incident rather than a hostile act. The three F-15E Strike Eagles downed the week prior were shot down by Kuwaiti air defences in a friendly-fire incident — all six crew members ejected safely. The KC-135 loss brings US service members killed in connection with the Iran war to thirteen: six from the 12 March crash, six killed in the Iranian strike on Kuwait's Shuaiba port on 1 March, and one who died after sustaining injuries in Saudi Arabia. A thirteenth reportedly died of a medical issue. Defense Secretary Hegseth called the crew "American heroes" at a Pentagon briefing and said the crash would "only recommit us to the resolve of this mission." Chairman of the Joint Chiefs Gen. Dan Caine said the incident was "a reminder of the true cost of the dedication and commitment of the joint force."
+
+The political context matters. A Quinnipiac poll conducted 9 March found 53 percent of US voters opposed to the military offensive against Iran, and 74 percent opposed to ground operations. The Trump administration has, in Al Jazeera's framing, tried to downplay US casualties throughout the conflict. Trump posted to Truth Social hours after the crash that the US had "unparalleled firepower, unlimited ammunition, and plenty of time" — an assertion calibrated at domestic audiences, not at the families of six airmen whose identities had not yet been released.`,
+  note: 'The mid-air collision hypothesis, if confirmed, raises questions about airspace management and operational tempo — KC-135s are operating at high intensity to support continuous strike packages over Iran, and the density of refuelling tracks over western Iraq may be a contributing factor. The IRI claim, while inconsistent with CENTCOM\'s hostile-fire ruling, functions as information warfare regardless of its accuracy: it allows Iran-aligned factions to present the loss as a result of resistance operations. The investigation outcome — whether mechanical, mid-air collision, or something else — will determine whether this is a story about operational risk in high-tempo war, or something more contested.',
+  sources: [
+    { platform: 'official', handle: 'CENTCOM — KC-135 loss confirmed, western Iraq, 12 March approximately 19:00 GMT, not due to hostile or friendly fire, all six crew confirmed deceased, identities withheld pending NOK notification', quote: '', timestamp: '13 Mar 2026', url: 'https://www.militarytimes.com/flashpoints/2026/03/12/us-air-force-kc-135-goes-down-in-iraq-centcom-says/' },
+    { platform: 'official', handle: 'CBS News — crash site near Turaibil on Iraqi-Jordanian border per Iraqi intelligence source, US officials believe mid-air collision may be involved, second tanker damaged and landed safely, fourth publicly acknowledged aircraft crash of Operation Epic Fury', quote: '', timestamp: '13 Mar 2026', url: 'https://www.cbsnews.com/news/iran-war-kc-135-us-plane-crash-iraq-crew-deaths-confirmed/' },
+    { platform: 'official', handle: 'Quinnipiac University Poll — 9 March 2026, 53% of US voters opposed to military offensive against Iran, 74% opposed to ground operations', quote: '', timestamp: '09 Mar 2026', url: 'https://poll.qu.edu/poll-release?releaseid=3924' },
+    { platform: 'official', handle: 'NBC News / CNN — Hegseth: "War is hell. War is chaos.", Gen. Caine statement, total US KIA now 13, FlightRadar24: second KC-135 declared emergency before landing Tel Aviv', quote: '', timestamp: '13 Mar 2026', url: 'https://www.nbcnews.com/news/us-news/us-refueling-plane-crashes-iraq-iran-war-crew-members-killed-rcna263315' },
+    { platform: 'official', handle: 'Al Jazeera — Islamic Resistance in Iraq claimed responsibility for downing both aircraft, Trump Truth Social post "unparalleled firepower, unlimited ammunition, and plenty of time" posted same day', quote: '', timestamp: '13 Mar 2026', url: 'https://www.aljazeera.com/news/2026/3/12/us-military-announces-loss-of-refueling-aircraft-over-western-iraq' }
+  ]
+},{
+  id: 58,
+  category: 'strike',
+  confidence: 'high',
+  tags: ['Iran', 'Middle East'],
+  date: '13 Mar 2026, 12:00 UTC',
+  title: 'Israel struck Ferdowsi Square during the Quds Day march. The president was in the crowd. The warning was invisible.',
+  deck: 'A strike hit central Tehran on Friday afternoon as thousands marched through Ferdowsi Square for the annual Al Quds Day demonstration. Iran\'s president, foreign minister, security chief, judiciary head, and multiple cabinet ministers were present in the crowd. One woman was killed by shrapnel. Israel had issued an evacuation warning via a Farsi-language social media account minutes before — on a platform the regime has blocked. The smoke column rose into frame behind a crowd of demonstrators still holding their Iranian flag. They turned toward it and started chanting.',
+  body: `Ferdowsi Square sits on Enghelab Street in central Tehran, a few hundred metres from Tehran University — the traditional endpoint of the Quds Day march route. It is surrounded by government buildings. It is not a military target in any conventional sense. Israel struck it anyway, and it had told the city it was going to.
+
+Though the warning was real, it was ultimately useless. Shortly before the strike, Israel posted an evacuation notice to a Farsi-language account on a social media platform that Iranian authorities have almost entirely blocked since the war began on 28 February. The Israeli military later posted a follow-up message in Farsi specifically noting that the head of Iran's judiciary was at the rally — and criticising the Iranian government for cutting off the internet that would have allowed civilians to see the warning. Whether the warning was a good-faith civilian protection measure or a piece of information warfare designed to be seen outside Iran, not inside it, is a question the evidence does not resolve cleanly. It was almost certainly both.
+
+The officials in the crowd were not incidental. Iran's President Masoud Pezeshkian had publicly called on Iranians to attend the march in extraordinary numbers — to "disappoint Iran's enemies by taking to the streets." He then joined them personally, moving through the crowd without a visible entourage and stopping to interact with members of the public. Also confirmed present: Foreign Minister Abbas Araghchi, Supreme National Security Council Secretary Ali Larijani, Judiciary Chief Gholamhossein Mohseni-Ejei (who was mid-interview with a state television correspondent when the strike occurred), Atomic Energy Organization head Mohammad Eslami, Chief of Police Ahmad-Reza Radan, the Minister of Roads, and the Minister for Sports and Youth. Photographs circulating from the event show each of these figures present — cropped and compiled together, though not in a single frame. The question of whether Israel was targeting the gathering specifically, or striking a pre-identified government infrastructure target that happened to be adjacent to it, has not been answered.
+
+Israel has not confirmed what it was aiming at. It did not say. It posted the area warning, struck, and then posted again in Farsi about the judiciary chief. That sequencing — warn, strike, note who was there — is legible as deliberate signal: we knew, we warned, we struck anyway. Iranian state media attributed the strike to a US-Israeli airstrike and confirmed one female civilian killed by shrapnel. Iranian media published photographs of civilian victims from the square. The Health Ministry's running total as of Friday stood at 1,444 killed and 18,551 injured across the country since 28 February.
+
+The imagery from Telegram — t.me/nayaforiraq/59091 and t.me/nayaforiraq/59131 — captures something that pure casualty figures do not. One clip shows a dense crowd of marchers mid-chant, Iranian flag prominent in the centre of frame. In the background, a grey-white smoke column rises from the direction of the strike. The crowd does not disperse. The people around the flag turn toward the smoke, raise their fists, and the chant intensifies. "Allahu Akbar." "Death to Israel." The smoke is still rising. This is the rally-around-the-flag effect rendered as a single shot. Pezeshkian called for the march specifically to show enemies that Iranians are not broken. Israel struck during it. The crowd responded by treating the strike as confirmation of everything they were there to say.
+
+Larijani, still marching, told ANA TV the strikes were evidence of desperation: "It's clear they're running out of steam. Trump's problem is that he doesn't understand that the Iranian nation is mature and determined." The judiciary chief gave his interview to state television at the moment of the blast and continued. The political choreography, intended or not, could not have been more complete: senior leadership present, strike visible, crowd defiant, officials composed, cameras rolling.
+
+The strategic logic of striking adjacent to — or directly at — a crowd of civilians during a state-organised demonstration is harder to articulate cleanly. If the target was a government building in Ferdowsi Square, the strike is explicable as part of the pattern of infrastructure targeting that has characterised the war's fourteen days. If the target was the crowd itself, or the officials within it, it would represent an escalation with no clear precedent in this conflict. Israel has not said. The warning it issued names the area, not the building. That ambiguity is not accidental.`,
+  note: 'The officials present — Pezeshkian, Araghchi, Larijani, Mohseni-Ejei, Eslami, Radan — represent a substantial fraction of Iran\'s surviving leadership. Khamenei was killed on day one. Mojtaba Khamenei has been named successor but has not appeared publicly. The decision to march, to be photographed together, and to be seen unprotected in a crowd under active bombardment is a deliberate signal that the regime is not paralysed. The counter-signal — striking the area anyway, with a warning only readable outside Iran — is equally deliberate. What neither side has yet established is what crossing the line from adjacent-to-officials to targeting-officials-directly would mean for escalation. The fact that Israel posted who was there after the strike suggests that question is being actively managed, not avoided.',
+  sources: [
+    { platform: 'telegram', handle: 'Naya for Iraq — footage of Ferdowsi Square strike during march, smoke column behind crowd', quote: '', timestamp: '13 Mar 2026', url: 'https://t.me/nayaforiraq/59091' },
+    { platform: 'telegram', handle: 'Naya for Iraq — second footage angle, march continuing post-strike', quote: '', timestamp: '13 Mar 2026', url: 'https://t.me/nayaforiraq/59131' },
+    { platform: 'telegram', handle: 'Naya for Iraq — photographs of civilian victims in Ferdowsi Square', quote: '', timestamp: '13 Mar 2026', url: 'https://t.me/nayaforiraq/59119' },
+    { platform: 'telegram', handle: 'Naya for Iraq — photo compilation of senior officials confirmed present in the march', quote: '', timestamp: '13 Mar 2026', url: 'https://t.me/nayaforiraq/59148' },
+    { platform: 'official', handle: 'Al Jazeera — explosion at Ferdowsi Square confirmed, one woman killed by shrapnel, Iranian state TV, Pezeshkian and Larijani both present, 1,444 total killed since 28 Feb', quote: '', timestamp: '13 Mar 2026', url: 'https://www.aljazeera.com/news/2026/3/13/explosions-near-tehran-al-quds-day-march-in-solidarity-with-palestinians' },
+    { platform: 'official', handle: 'AP / Hartford Courant — Israel issued Farsi-language social media evacuation warning before strike, internet shutdown meant few Iranians saw it, Israel follow-up post noted judiciary chief was present', quote: '', timestamp: '13 Mar 2026', url: 'https://www.courant.com/2026/03/13/iran-us-israel-war/' },
+    { platform: 'official', handle: 'Times of Israel — Ferdowsi Square location confirmed, area home to government buildings, Mohseni-Ejei giving live TV interview when strike occurred, Tasnim video of smoke plume', quote: '', timestamp: '13 Mar 2026', url: 'https://www.timesofisrael.com/liveblog_entry/large-blast-reported-at-site-of-quds-day-demonstration-in-tehran/' },
+    { platform: 'official', handle: 'Jerusalem Post — Pezeshkian, Araghchi, Larijani, Eslami, Mohseni-Ejei, Radan all confirmed present, Larijani blamed Israel', quote: '', timestamp: '13 Mar 2026', url: 'https://www.jpost.com/middle-east/iran-news/article-889858' },
+    { platform: 'official', handle: 'Middle East Eye — Khamenei killed day one of war, Mojtaba named successor but not yet appeared publicly, Larijani: "attacks are out of desperation"', quote: '', timestamp: '13 Mar 2026', url: 'https://www.middleeasteye.net/news/larijani-and-top-iranian-officials-appear-al-quds-day-march' }
+  ]
+},{
   id: 57,
   category: 'analysis',
   confidence: 'high',
@@ -2947,25 +2999,19 @@ renderPosts('all');
   let running = false;
   let opacity = 0;
   let targetOpacity = 0;
-  const t0 = performance.now();
 
-  // Option B — Gallery Night
   const palette = [
-    [195, 145,  15],  // antique gold
-    [215, 120,  20],  // apricot
-    [ 90,  20,  70],  // plum
-    [195, 145,  15],  // antique gold (weighted)
-    [155,  55,  10],  // terracotta
-    [ 75,  15,  55],  // deep plum
+    [110,  78,   6],  // dark gold
+    [130,  55,   8],  // dark amber
+    [ 60,  12,  48],  // deep plum
+    [ 85,  30,   5],  // dark terracotta
+    [ 72,  40,   4],  // dark bronze
+    [ 45,   8,  35],  // very deep plum
   ];
 
   // Two wide, low light sources anchored near the bottom
   // Same colour phase — they move in sync, just offset horizontally
   let colOffset = 0;
-  const lights = [
-    { x: 0.28, phase: 0.0 },
-    { x: 0.72, phase: 1.2 },
-  ];
 
   function lerpColor(a, b, t) {
     return [
@@ -2975,39 +3021,34 @@ renderPosts('all');
     ];
   }
 
-  function getColor(colPhase, t) {
-    // Very slow cycle — full rotation every ~50s
-    const speed = 0.02;
-    const pos = ((t * speed + colPhase) % palette.length + palette.length) % palette.length;
+  function getColor(colPhase) {
+    const pos = ((colPhase) % palette.length + palette.length) % palette.length;
     const i = Math.floor(pos);
     const frac = pos - i;
     return lerpColor(palette[i], palette[(i+1) % palette.length], frac);
   }
 
   function tick(canvas, ctx) {
-    const t = (performance.now() - t0) * 0.001;
     const w = canvas.width, h = canvas.height;
     ctx.clearRect(0, 0, w, h);
 
     opacity += (targetOpacity - opacity) * 0.025;
+    // Slowly advance colOffset so palette cycles even while modal stays open
+    colOffset += 0.000417;
 
     if (opacity > 0.002) {
-      for (const l of lights) {
-        // Gentle horizontal sway, stays anchored near bottom 80-100% of screen height
-        const cx = (l.x + Math.sin(t * 0.04 + l.phase) * 0.12) * w;
-        const cy = h + h * 0.05; // just below bottom edge — light rises upward
-        // Wide, tall gradient that bleeds upward from the floor
-        const r = w * 0.75;
-        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        const [r0,g0,b0] = getColor(colOffset, t);
-        grad.addColorStop(0,    `rgba(${r0|0},${g0|0},${b0|0},${0.14 * opacity})`);
-        grad.addColorStop(0.35, `rgba(${r0|0},${g0|0},${b0|0},${0.05 * opacity})`);
-        grad.addColorStop(0.7,  `rgba(${r0|0},${g0|0},${b0|0},${0.01 * opacity})`);
-        grad.addColorStop(1,    `rgba(${r0|0},${g0|0},${b0|0},0)`);
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, w, h);
-      }
+      const [r0,g0,b0] = getColor(colOffset);
 
+      // Horizontal strip: a linear gradient rising from just below the bottom edge
+      // Simulates a neon/LED strip laid off-screen at the bottom, glow bleeding upward
+      const stripH = h * 0.60; // how far up the glow reaches
+      const grad = ctx.createLinearGradient(0, h, 0, h - stripH);
+      grad.addColorStop(0,    `rgba(${r0|0},${g0|0},${b0|0},${0.35 * opacity})`);
+      grad.addColorStop(0.18, `rgba(${r0|0},${g0|0},${b0|0},${0.18 * opacity})`);
+      grad.addColorStop(0.45, `rgba(${r0|0},${g0|0},${b0|0},${0.06 * opacity})`);
+      grad.addColorStop(1,    `rgba(${r0|0},${g0|0},${b0|0},0)`);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, h - stripH, w, stripH);
     }
 
     const settled = Math.abs(opacity - targetOpacity) < 0.003;
@@ -3028,7 +3069,7 @@ renderPosts('all');
     canvas.width  = container.offsetWidth  || window.innerWidth;
     canvas.height = container.offsetHeight || window.innerHeight;
     const ctx = canvas.getContext('2d');
-    colOffset += 0.8 + Math.random() * 1.4;
+    colOffset += Math.random() * palette.length;
     targetOpacity = 1;
     if (!running) { running = true; raf = requestAnimationFrame(() => tick(canvas, ctx)); }
   };
