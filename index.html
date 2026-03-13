@@ -134,7 +134,7 @@ nav {
   justify-content: center;
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: 100;
 }
 .nav-links {
   display: flex;
@@ -444,6 +444,187 @@ mark.search-hit {
 }
 .post-body p { margin-bottom: 12px; }
 .post-body p:last-child { margin-bottom: 0; }
+/* =========== ARTICLE MODAL =========== */
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes backdropOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes modalSlideIn {
+  from { opacity: 0; transform: translateY(22px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+@keyframes modalSlideOut {
+  from { opacity: 1; transform: translateY(0)    scale(1);    }
+  to   { opacity: 0; transform: translateY(18px) scale(0.97); }
+}
+body.modal-open { overflow: hidden; }
+#article-page {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+}
+#article-page.visible { display: flex; align-items: flex-start; justify-content: center; }
+#article-page.visible #article-page-backdrop {
+  animation: backdropIn 0.28s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+#article-page.visible .article-page-inner {
+  animation: modalSlideIn 0.32s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+#article-page-backdrop {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 20%, rgba(26,22,18,0.22) 0%, rgba(26,22,18,0.80) 100%),
+    linear-gradient(to bottom, rgba(26,22,18,0.40) 0%, rgba(8,6,4,0.88) 100%);
+  overflow: hidden;
+}
+#modal-lava-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.article-page-inner {
+  position: relative;
+  z-index: 301;
+  background: var(--paper);
+  max-width: 900px;
+  width: calc(100% - 48px);
+  margin: 36px auto;
+  max-height: calc(100vh - 72px);
+  overflow-y: auto;
+  padding: 48px 56px 72px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.45), 0 2px 0 rgba(184,134,11,0.35);
+  border-radius: 18px;
+  scrollbar-width: none;
+}
+.article-page-inner::-webkit-scrollbar { display: none; }
+.article-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+.article-page-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim2);
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.18);
+  background: none;
+  padding: 4px 12px 4px 10px;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.article-page-back:hover {
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.35);
+  color: var(--ink);
+}
+.article-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--dim2);
+  line-height: 1;
+  padding: 0 0 0 12px;
+  transition: color .15s;
+}
+.article-modal-close:hover { color: var(--ink); }
+.article-page-masthead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.article-page-title {
+  font-family: var(--display);
+  font-size: clamp(20px, 3.5vw, 28px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0 0 22px;
+}
+/* deck — larger bottom margin than card */
+#ap-deck { margin-bottom: 32px !important; }
+.article-page-body {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #2a2420;
+}
+.article-page-body p { margin: 0 0 12px; }
+.article-page-body blockquote {
+  border-left: 3px solid var(--gold);
+  margin: 1.4em 0;
+  padding: 10px 18px;
+  background: var(--paper2);
+  color: var(--dim1);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.article-page-share {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: var(--dim2);
+  border: 1px solid var(--paper2);
+  background: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-top: 32px;
+  transition: color .15s, border-color .15s;
+}
+.article-page-share:hover { color: var(--ink); border-color: var(--dim2); }
+.article-page-share.copied { color: var(--accent2); border-color: var(--accent2); }
+.post-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  gap: 10px;
+}
+.post-footer .post-tags { margin-top: 0; }
+.share-icon-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim2);
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: none;
+  padding: 4px 10px;
+  flex-shrink: 0;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.share-icon-card:hover {
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.30);
+  color: var(--ink);
+}
+.share-icon-card.copied { color: var(--accent2); border-color: var(--accent2); }
+
 .post-body blockquote {
   margin: 20px 0;
   padding: 14px 20px;
@@ -636,7 +817,7 @@ mark.search-hit {
   line-height: 1.5;
   color: var(--dim);
 }
-.method-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.method-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; color: var(--dim2); font-family: var(--mono); }
 
 /* Latest updates ticker */
 .update-item {
@@ -849,6 +1030,32 @@ footer {
 </head>
 <body>
 
+<!-- =========== ARTICLE MODAL =========== -->
+<div id="article-page">
+  <div id="article-page-backdrop" onclick="closeArticlePage()">
+    <canvas id="modal-lava-canvas"></canvas>
+  </div>
+  <div class="article-page-inner">
+    <div class="article-modal-header">
+      <button class="article-page-back" onclick="closeArticlePage()">← DISPATCH</button>
+      <button class="article-modal-close" onclick="closeArticlePage()" title="Close">✕</button>
+    </div>
+    <div class="article-page-masthead">
+      <span id="ap-category"></span>
+      <span id="ap-date"></span>
+      <span id="ap-confidence"></span>
+    </div>
+    <h1 class="article-page-title" id="ap-title"></h1>
+    <div class="article-page-deck" id="ap-deck"></div>
+    <div class="article-page-body" id="ap-body"></div>
+    <div id="ap-note"></div>
+    <div id="ap-sources"></div>
+    <div id="ap-tags"></div>
+    <button class="article-page-share" id="ap-share-btn" onclick="copyArticleLink()">⧉ COPY LINK</button>
+  </div>
+</div>
+
+
 <div class="top-bar">
   <span>Sultan Aben · Independent Researcher</span>
   <span class="top-bar-center"></span>
@@ -946,11 +1153,11 @@ footer {
 
       <div class="widget">
         <div class="widget-title">Methodology</div>
-        <div class="method-item"><span class="method-icon">📍</span><span>Geolocate footage against satellite imagery (Google Earth, Sentinel Hub)</span></div>
-        <div class="method-item"><span class="method-icon">🕐</span><span>Verify timestamps using SunCalc shadow analysis</span></div>
-        <div class="method-item"><span class="method-icon">🔗</span><span>Primary sources only: Telegram channels, X posts, official statements</span></div>
-        <div class="method-item"><span class="method-icon">🔍</span><span>Reverse image/video search via TinEye &amp; InVID</span></div>
-        <div class="method-item"><span class="method-icon">📡</span><span>Cross-reference minimum 2 independent sources per claim</span></div>
+        <div class="method-item"><span class="method-icon">◎</span><span>Geolocate footage against satellite imagery (Google Earth, Sentinel Hub)</span></div>
+        <div class="method-item"><span class="method-icon">◷</span><span>Verify timestamps using SunCalc shadow analysis</span></div>
+        <div class="method-item"><span class="method-icon">—</span><span>Primary sources only: Telegram channels, X posts, official statements</span></div>
+        <div class="method-item"><span class="method-icon">⌕</span><span>Reverse image/video search via TinEye &amp; InVID</span></div>
+        <div class="method-item"><span class="method-icon">⊕</span><span>Cross-reference minimum 2 independent sources per claim</span></div>
       </div>
 
       <div class="widget">
@@ -1926,6 +2133,123 @@ let posts = [
     { platform: 'official', handle: 'Atlantic Council — Trump not following Israel\'s recognition, AFRICOM officials visited Hargeisa, bipartisan Congressional pressure, US strategic interest unresolved', quote: 'Washington will continue to face pressure from Mogadishu and the AU to preserve the status quo. Still, the strategic consequences of Israel\'s move, combined with US interests in the region, make eventual US recognition increasingly plausible.', timestamp: '15 Jan 2026', url: 'https://www.atlanticcouncil.org/blogs/menasource/after-israels-recognition-of-somaliland-what-comes-next/' }
   ]
 }
+,{
+  id: 51,
+  category: 'strike',
+  confidence: 'high',
+  tags: ['Iran', 'Middle East'],
+  date: '12 Mar 2026, 14:00 UTC',
+  title: 'Seventeen ships hit since 28 February. The Navy cannot escort yet. Iran\'s new Supreme Leader says the strait stays closed.',
+  deck: 'Four vessels struck in two days. The Navy cannot escort yet. Mojtaba Khamenei\'s first strategic statement as Supreme Leader: the Strait of Hormuz stays closed until Iran decides otherwise.',
+  body: `The 11 March wave brought the total number of vessels struck since 28 February to at least 17, with six confirmed crew deaths. Three ships were hit in a single day by projectiles the IRGC confirmed were its own. The Thai-flagged dry bulk carrier Mayuree Naree was struck by two projectiles while transiting the strait approximately 11 nautical miles north of Oman. The engine room caught fire. Its operator, Precious Shipping, confirmed three crew members were trapped below and believed missing; the Omani navy rescued the remaining 20. Photographs of the vessel engulfed in black smoke circulated on Telegram alongside a clip of sailors watching from a liferaft as their ship burned.\n\nThe Marshall Islands-flagged kamsarmax bulk carrier Star Gwyneth was struck approximately 50 nautical miles northwest of Dubai while at anchor, sustaining hull damage with all crew safe. Star Bulk CEO Petros Pappas told the New York Times he believed the strike may have been accidental. The Japan-flagged container ship ONE Majesty, operated by Ocean Network Express and owned by Mitsui O.S.K. Lines, sustained minor damage — a 10-centimetre hole — from a projectile 25 nautical miles northwest of Ras Al Khaimah. All crew safe, vessel seaworthy.\n\nThen on 12 March, the Safesea Vishnu was struck by Iranian explosive-laden drone boats in Al Basrah Anchorage, Iraqi waters. One crew member was killed. Fifteen of the 16-person crew were evacuated. The IRGC issued a statement saying it had targeted the vessel — owned by US-based Safesea Transport Group and Safesea Group — after the ship "disobeyed and ignored the warnings" of the Iranian navy, framing the attack as enforcement of rules Iran has unilaterally declared over an international waterway. Footage posted to X showed the vessel on fire with crew visible in the water.\n\nThe escort promise is now in open contradiction with the military's stated position. Trump announced on 3 March that the US Navy would begin escorting tankers through the Strait of Hormuz "as soon as possible." On 10 March, Energy Secretary Chris Wright posted to X that the Navy had "successfully escorted an oil tanker through the Strait of Hormuz." Oil prices fell by more than 17 percent on the news. The post was deleted within 30 minutes. White House Press Secretary Karoline Leavitt confirmed at the podium that the post was false: "I can confirm that the US Navy has not escorted a tanker or a vessel at this time." The US Navy had also been refusing near-daily requests from the shipping industry for military escorts since 28 February, according to Reuters sources. General Dan Caine, Chairman of the Joint Chiefs, said if tasked to escort they would "look at the range of options to set the military conditions to be able to do that" — language that does not describe a capability ready to deploy.\n\nWright clarified on CNBC on 12 March in terms that made the gap explicit:\n\n<blockquote>"It\'ll happen relatively soon, but it can\'t happen now. We\'re simply not ready. All of our military assets right now are focused on destroying Iran\'s offensive capabilities and the manufacturing industry that supplies their offensive capabilities."</blockquote>\n\nHe projected end of month. Lloyd\'s List has assessed that a convoy scheme protecting five vessels simultaneously is the most realistic near-term model, and that even under best-case conditions this would restore only around 10 percent of usual traffic flow through the strait. That figure is a ceiling, not a floor — it assumes the escort scheme works, that Iran does not engage escorting vessels, and that insurance markets respond by reinstating cover. None of those assumptions are settled.\n\nThe exemptions picture is the most diplomatically revealing element of what has happened in the strait. Iranian and Chinese-flagged vessels have been transiting freely while commercial shipping from all other nations has stopped. Treasury Secretary Scott Bessent acknowledged this on Sky News: "There are, in fact, tankers coming through now, Iranian tankers, I believe some Chinese-flagged tankers have come through. So we know that they have not mined the straits." That framing — offered as reassurance — is in practice a description of a chokepoint that is open to China and closed to everyone else. CNBC reported that Iran has shipped approximately 11.7 to 12 million barrels of crude oil to China through the strait since 28 February — unimpeded, throughout the same period in which 17 commercial vessels from other nations were struck. India, Japan, and South Korea collectively absorb roughly 70 percent of Hormuz crude flows. None of their vessels are currently transiting. Turkish, Egyptian, Indian, and Pakistani officials have separately approached Tehran to demand the attacks on shipping stop, according to Al-Akhbar. The countries most damaged by the Hormuz closure are not Western — they are Asian, and they are watching Beijing\'s vessels pass through unmolested.\n\nMojtaba Khamenei\'s first public strategic statement as Supreme Leader, issued on 12 March, was unambiguous on the strait: it must remain closed. He framed the closure not as a military tactic but as a condition — the war must end on Iran\'s terms before commercial traffic resumes. Turkey, Egypt, India, and Pakistan have all now sought to mediate separately. Iran\'s response to each approach has been to say it will not stop attacks until the US pays reparations and accepts terms. The countries that depend most on the strait are now being asked to pressure Washington rather than Tehran. That is not an accident. It is the architecture of what Iran is attempting to construct: a coalition of economically damaged neutral states whose collective interest in reopening the strait creates pressure on the United States from directions that US military power cannot resolve.`,
+  note: 'The deleted Wright post is the single most consequential communications error of the war so far — a 17 percent oil price move on a false claim, retracted within 30 minutes, demonstrates how exposed the global energy market is to signal noise from this conflict. The Bessent acknowledgement that Chinese and Iranian vessels are transiting freely is underreported and should be tracked: it establishes that Iran has de facto granted China a carve-out, which has implications for Chinese diplomatic positioning, US pressure on Beijing over the war, and the long-term structure of Gulf energy flows. The India/Japan/South Korea pressure track — three countries absorbing 70% of Hormuz crude, none of whose vessels are moving — is the coalition Iran is trying to activate against Washington.',
+  sources: [
+    { platform: 'telegram', handle: 'OSINTLive/501985 — Thai navy photographs of Mayuree Naree engulfed in smoke, 11 March', quote: 'Thai cargo ship Mayuree Naree engulfed in smoke after strike in Strait of Hormuz.', timestamp: '11 Mar 2026', url: 'https://t.me/OSINTLive/501985' },
+    { platform: 'telegram', handle: 'OSINTLive/502408 — additional imagery of Mayuree Naree strike', quote: 'Further imagery of Mayuree Naree strike, Strait of Hormuz.', timestamp: '11 Mar 2026', url: 'https://t.me/OSINTLive/502408' },
+    { platform: 'telegram', handle: 'OSINTLive/502599 — sailors on liferaft watching Mayuree Naree burn', quote: 'Thai sailors on a liferaft watching their ship burn after the Iranian USV strike in the Strait of Hormuz.', timestamp: '11 Mar 2026', url: 'https://t.me/OSINTLive/502599' },
+    { platform: 'telegram', handle: 'ClashReport/75327 — Safesea Vishnu on fire, crew in water, footage of Iranian drone boat strike in Iraqi waters', quote: 'Footage of the moment of attack on oil tanker Safesea Vishnu by Iranian explosive boat in the Persian Gulf near Iraq.', timestamp: '12 Mar 2026', url: 'https://t.me/ClashReport/75327' },
+    { platform: 'official', handle: 'IranObserver0 / X — Safesea Vishnu footage, IRGC statement claiming strike after vessel "ignored warnings"', quote: 'Iran\'s IRGC says it struck US-owned vessel Safe Sia, considered an asset of the US army, after the vessel ignored repeated warnings from the IRGC Navy.', timestamp: '12 Mar 2026', url: 'https://x.com/IranObserver0/status/2031868153945317512' },
+    { platform: 'official', handle: 'USNI News — JMIC advisory 11 March: ONE Majesty minor damage, Star Gwyneth anchored hull damage, 17 ships hit since 28 Feb, six crew deaths per IMO', quote: 'ONE Majesty had minor damage and continued underway, while Star Gwyneth is anchored and has damage to its hull. Seventeen ships have been hit in the Strait of Hormuz since Feb. 28, when the conflict between Iran, US and Israel began.', timestamp: '11 Mar 2026', url: 'https://news.usni.org/2026/03/11/3-cargo-ships-damaged-in-suspected-iranian-attacks-in-the-strait-of-hormuz' },
+    { platform: 'official', handle: 'CNBC — Wright "simply not ready", end of month projection, all assets on offensive capability destruction, prior deleted post and White House denial', quote: 'It\'ll happen relatively soon, but it can\'t happen now. We\'re simply not ready. All of our military assets right now are focused on destroying Iran\'s offensive capabilities and the manufacturing industry that supplies their offensive capabilities.', timestamp: '12 Mar 2026', url: 'https://www.cnbc.com/2026/03/12/energy-secretary-chris-wright-u-s-not-ready-to-escort-tankers-through-strait-of-hormuz-yet.html' },
+    { platform: 'official', handle: 'Al Jazeera — Wright deleted post timeline, 17% oil price drop on false claim, Leavitt denial, Caine "set conditions" language, General Dan Caine Joint Chiefs', quote: 'I can confirm that the US Navy has not escorted a tanker or a vessel at this time. Though, of course, that\'s an option the president has said he will absolutely utilise if and when necessary at the appropriate time.', timestamp: '10 Mar 2026', url: 'https://www.aljazeera.com/news/2026/3/10/energy-secretary-deletes-claim-us-military-escorted-tanker-through-hormuz' },
+    { platform: 'official', handle: 'CNBC / TankerTrackers — 11.7 million barrels Iranian crude to China through Hormuz since 28 Feb, Kpler estimates 12 million, vessels "going dark" to avoid tracking, Jask terminal resumed loading', quote: 'Iran has sent at least 11.7 million barrels of crude oil through the Strait of Hormuz since the war began on Feb. 28, all of which were headed to China.', timestamp: '11 Mar 2026', url: 'https://www.cnbc.com/2026/03/11/iran-ships-oil-china-strait-hormuz-closure-.html' },
+    { platform: 'official', handle: 'NBC News / NBC live — Bessent Sky News: Chinese and Iranian tankers transiting freely, Lloyd\'s List 10% flow ceiling for convoy scheme, Turkey/Egypt/India/Pakistan approached Tehran; Khamenei first statement: strait stays closed', quote: 'There are, in fact, tankers coming through now, Iranian tankers, I believe some Chinese flag tankers have come through. So we know that they have not mined the straits.', timestamp: '12 Mar 2026', url: 'https://www.nbcnews.com/world/iran/live-blog/live-updates-iran-war-oil-ship-attacks-hormuz-trump-israel-lebanon-rcna263101' }
+  ]
+}
+,{
+  id: 52,
+  category: 'strike',
+  confidence: 'high',
+  tags: ['Iran', 'Middle East'],
+  date: '12 Mar 2026, 08:00 UTC',
+  title: 'Iran struck Oman\'s largest port. Three fuel tanks still burning. Tehran says it was a US-Israeli false flag.',
+  deck: 'Iranian drones struck oil storage facilities at the Port of Salalah on 11 March, igniting at least three fuel tanks and forcing suspension of all container and cargo terminal operations. The fires were still burning on 12 March. Oman had been Iran\'s primary diplomatic back-channel and a declared neutral. Sultan Haitham called Pezeshkian personally to express serious dissatisfaction. Iran denied responsibility and called the strike "suspicious" — accusing the US-Israel alliance of staging it to damage Tehran\'s image.',
+  body: `Drones struck the southern section of the Port of Salalah on the evening of 11 March, hitting oil storage infrastructure at Oman\'s largest port and one of the most significant transshipment hubs in the Indian Ocean. Omani state media confirmed the attack. Ambrey and Vanguard Tech, both maritime security firms, confirmed the strike and reported suspension of container terminal and general cargo terminal operations. At least three fuel tanks caught fire. Footage circulated on Telegram shows the port engulfed in black and orange smoke, the fires visible across a wide area. The fires continued to burn on 12 March with no indication of full containment at time of writing.\n\nThis is not the first time Iranian drones have struck Omani territory in this conflict. On 1 March, two drones hit Duqm Port — one striking a mobile workers\' housing unit, a second intercepted with debris falling near fuel storage tanks. A tanker was simultaneously targeted off Khasab. On 3 March, a fuel tank at Duqm was struck by multiple UAVs and Oman intercepted two Iranian drones over Dhofar province. Each time, Tehran offered the same formula: Iranian Foreign Minister Araghchi said the IRGC units striking Oman were "acting independently" based on general instructions and that hitting Oman was "not our choice." Iran nevertheless continued striking. The 11 March Salalah attack is the fourth separate Omani incident since 28 February.\n\nThe denial this time is of a different character. Iran\'s Khatam al-Anbiya Central Headquarters formally denied involvement, called the attack "suspicious," and accused the United States and Israel of staging the strike to damage Iran\'s image with a neutral party. The framing — a false flag by the US-Israel alliance against Oman — is one Iran has used before for incidents it cannot plausibly deny by other means. BRICSinfo posted the Iranian statement to X on 12 March. The denial carries limited credibility: Omani air defences shot down several drones targeting Salalah before others hit their targets, and the trajectory and signatures of the intercepted drones were assessed by Omani forces as consistent with Iranian provenance. Iran has also not explained how a US-Israeli false flag would have been conducted without Omani detection.\n\nThe diplomatic damage is the more significant story. Oman has been the most important neutral channel in this conflict — not in a symbolic sense but a functional one. The Omani foreign minister Badr Al Busaid hosted the last round of US-Iran nuclear talks on 26 February, two days before the war began. The Swiss channel is active for tactical communication. But Oman has functioned as the back room where the possibility of an exit gets quietly constructed. Sultan Haitham bin Tariq called Iranian President Pezeshkian directly on 12 March to convey, per the Omani readout, strong dissatisfaction over repeated attacks on Omani territory. The Sultan reiterated Oman\'s neutrality and stated Oman would take every necessary step to protect its security. Notably, the Sultan had congratulated Mojtaba Khamenei on his appointment as Supreme Leader just days earlier — a gesture of continued engagement that Iran has now repaid with burning fuel tanks.\n\nOman\'s position in this conflict has been genuinely difficult. It issued three separate statements in the first 24 hours of the war — the first condemning only the US-Israeli strikes without mentioning Iranian retaliation against its neighbours, the second broadening to condemn all strikes on Arab states, the third finally including explicit condemnation of Iranian attacks. The progression under pressure told the story of a country trying to maintain a neutrality that the war was steadily making untenable. Oman hosts a large Houthi office in Muscat suspected of espionage and smuggling. Its most senior religious figure publicly backed Iran and prayed that Iranian strikes hit deep inside Israel. It is the only GCC member not governed by Sunni Islam and has long maintained closer ties to Tehran than any of its Gulf neighbours. None of that insulated it. The port is burning.\n\nSalalah is not a peripheral facility. It is Oman\'s primary deep-water transshipment port, handling around 4.5 million twenty-foot equivalent units annually, and had recently become an increasingly significant transit point for tankers seeking to bypass the Strait of Hormuz by offloading to smaller vessels for onward movement through the Arabian Sea. Striking it removes one of the few partial workarounds that the shipping industry had been developing in response to the Hormuz closure. The suspension of operations, confirmed by Inchcape Shipping Services, leaves the Port of Duqm as the only major Omani facility still functioning — and Duqm has itself been struck twice. Iran has now targeted every significant piece of Omani port infrastructure involved in Gulf energy logistics.`,
+  note: 'The false flag denial warrants particular scrutiny. Iran used similar language for the Minab school strike and several maritime incidents it subsequently acknowledged or that were forensically attributed to it. The pattern is: deny, investigate, quietly let the denial stand without further comment. Omani air defence assessments of drone provenance will not be made public but the Sultan\'s phone call to Pezeshkian — which is described in the readout in unusually blunt terms — indicates Muscat is in no doubt about attribution. The Salalah bypass route disruption is underreported: it was beginning to function as a meaningful partial alternative to Hormuz transit, and its suspension removes a pressure valve that was slightly moderating the global shipping impact of the Hormuz closure.',
+  sources: [
+    { platform: 'telegram', handle: 'ClashReport/75197 — footage of Salalah port fires following drone strike, 11 March', quote: 'Iranian drones strike Oman\'s Salalah port fuel storage facilities.', timestamp: '11 Mar 2026', url: 'https://t.me/ClashReport/75197' },
+    { platform: 'telegram', handle: 'ClashReport/75221 — additional footage of Salalah port strike', quote: 'Further footage of fires at Salalah port, Oman.', timestamp: '11 Mar 2026', url: 'https://t.me/ClashReport/75221' },
+    { platform: 'telegram', handle: 'ClashReport/75245 — fires continuing at Salalah port into 12 March', quote: 'Salalah port fires still burning, 12 March.', timestamp: '12 Mar 2026', url: 'https://t.me/ClashReport/75245' },
+    { platform: 'official', handle: 'BRICSinfo / X — Iran denial statement: attack "suspicious", US-Israel false flag accusation, Khatam al-Anbiya investigation pledge', quote: 'Iran officially denied involvement in Wednesday\'s drone attack on fuel tanks at Oman\'s Salalah port, calling it "suspicious" and accusing the US-Israel alliance of staging it to tarnish Tehran\'s image.', timestamp: '12 Mar 2026', url: 'https://x.com/BRICSinfo/status/2031918225299050642' },
+    { platform: 'official', handle: 'Bloomberg — fuel tanks struck, Oman News Agency confirms, Inchcape Shipping Services: container and general cargo terminals suspended, Duqm operating normally', quote: 'Fuel tanks at the Port of Salalah have been struck by drones, the state-run Oman News Agency reported, citing a security source. Operations have been suspended at the port\'s container terminal and general cargo terminal.', timestamp: '11 Mar 2026', url: 'https://www.bloomberg.com/news/articles/2026-03-11/operations-suspended-at-oman-port-as-drones-hit-fuel-tanks' },
+    { platform: 'official', handle: 'Times of Israel / AFP — three tanks ablaze, thick smoke, Vanguard Tech confirms southern section strike, partial intercept by Omani defences', quote: 'A security source reported that several drones were shot down, while others struck fuel tanks at the port of Salalah. At least three fuel tanks are now on fire, with thick smoke spreading across the port.', timestamp: '11 Mar 2026', url: 'https://www.timesofisrael.com/liveblog_entry/drone-strike-hits-fuel-tanks-at-omani-port-state-media/' },
+    { platform: 'official', handle: 'India TV News — Sultan Haitham calls Pezeshkian, expresses "strong dissatisfaction", Sultan had congratulated Mojtaba Khamenei days earlier, all-measures statement', quote: 'Following the attack, Oman\'s Sultan Haitham bin Tariq Al Said contacted Iranian President Masoud Pezeshkian to convey serious concerns over strikes occurring within Omani territory. The Sultan reiterated Oman\'s neutral stance in the ongoing conflict and emphasised that the nation will take every necessary step to safeguard its security and stability.', timestamp: '12 Mar 2026', url: 'https://www.indiatvnews.com/news/world/iran-strikes-oil-storage-tanks-at-oman-s-salalah-port-using-drones-massive-fire-erupts-watch-the-video-2026-03-12-1033469' },
+    { platform: 'official', handle: 'OilPrice.com / Ambrey — Salalah as Hormuz bypass hub, Duqm earlier strikes, Araghchi "not our choice" formula, IRGC acting independently claim', quote: 'Salalah, located on Oman\'s southern coast along the Arabian Sea, has become an increasingly important hub for tankers seeking to bypass the increasingly dangerous Strait of Hormuz.', timestamp: '11 Mar 2026', url: 'https://oilprice.com/Latest-Energy-News/World-News/Iranian-Drone-Strike-Hits-Omans-Largest-Oil-Storage-Facility.html' }
+  ]
+}
+,{
+  id: 53,
+  category: 'analysis',
+  confidence: 'high',
+  tags: ['Iran', 'Middle East', 'Europe'],
+  date: '13 Mar 2026, 00:22 UTC',
+  title: 'Treasury has now opened Russian oil sales to every country on earth. Moscow is making $150 million extra per day.',
+  deck: 'Treasury Secretary Scott Bessent announced OFAC General Licence 134 on X at 11:41 PM on 12 March. GL134 authorises any country to purchase Russian crude oil loaded on any vessel on or before 12 March, valid through 11 April — no country restriction, any buyer, any destination. What began as a targeted waiver for one ally has become a universal suspension of the sanctions architecture the West spent three years building to constrain Moscow\'s oil revenues. Russia is earning an extra $150 million per day from oil sales, and has accumulated an estimated $1.3 to $1.9 billion in additional oil tax revenue since 28 February.',
+  body: `The waiver that started as a favour to one ally has become a global authorisation. On 6 March, OFAC issued a 30-day waiver authorising Indian refiners specifically to purchase Russian crude oil loaded on vessels before 5 March. Bessent framed it narrowly on X: India had been a good actor, had stopped buying sanctioned Russian oil at Washington\'s request last autumn, and this was a temporary exception to cover a supply gap caused by Hormuz. Critics immediately noted the internal contradiction: Russia was reportedly sharing intelligence with Iran to help it target US troops, and Washington was simultaneously unlocking the revenue stream it had spent three years trying to constrain. Democratic representatives Liccardo and Gallego called it "dangerous, self-defeating, and indefensible." Republican Roger Wicker, chair of the Senate Armed Services Committee, said he "strongly disagrees" with the decision.\n\nAt 11:41 PM on 12 March, Bessent posted again. OFAC General Licence 134, signed by Director Bradley T. Smith, extends and universalises the authorisation. GL134 permits all transactions "ordinarily incident and necessary to the sale, delivery, or offloading" of Russian crude oil or petroleum products loaded on any vessel on or before 12:01 AM EDT on 12 March. The authorisation runs through 12:01 AM EDT on 11 April. There is no country restriction. Any buyer, any vessel, any destination. The licence explicitly covers oil produced by entities sanctioned under both the Russian Harmful Foreign Activities Sanctions Regulations and the Ukraine-/Russia-Related Sanctions Regulations, meaning it covers oil from Russia\'s most heavily sanctioned producers, including Lukoil and Rosneft. Bessent\'s post framed it as promoting "stability in global energy markets" and insisted it "will not provide significant financial benefit to the Russian government, which derives the majority of its energy revenue from taxes assessed at the point of extraction."\n\nThat extraction tax argument is the administration\'s load-bearing claim and it requires scrutiny. Russia\'s mineral extraction tax is levied when oil leaves the wellhead, not when it is delivered. Oil already loaded on a vessel has already generated its extraction tax liability. What GL134 resolves is the payment and delivery problem for oil that was stranded, because buyers feared US secondary sanctions. Before GL133 and GL134, that stranded inventory represented a cash-flow crisis for Russian traders and shipping intermediaries, not a tax event. The waiver converts hundreds of millions of barrels of frozen inventory into liquid, saleable, revenue-generating cargo. Whether the extraction tax was technically already assessed is a question of Russian fiscal accounting. Whether Russia\'s overall oil revenue position improves materially as a result is not seriously in dispute. The Kobeissi Letter reported on 12 March that Russia is earning an extra $150 million per day from oil sales as Brent has surged past $100. ClashReport\'s analysis estimated $1.3 to $1.9 billion in additional oil tax revenue accumulated since 28 February, and that figure predates GL134.\n\nThe step from India-only to universal is strategically significant in a way the administration has not acknowledged. The India waiver could at least be defended as a targeted measure for a specific ally, in a specific supply crunch, with a defined end date and an existing bilateral trade framework as context. GL134 is a general authorisation. It does not require a country to demonstrate supply need, does not require a bilateral relationship with Washington, and does not exclude any buyer except Iran itself. A European government that had publicly committed not to buy Russian oil, a Southeast Asian buyer with no relationship to the India-US trade deal, a Latin American refiner operating in a country that has distanced itself from the Western sanctions regime, all are now authorised. The sanctions architecture the EU and UK mirrored, that G7 finance ministers coordinated over years of painful negotiation, has been suspended unilaterally by Washington without consultation. Bessent said on 6 March: "We\'re going to keep a cadence of announcing measures to bring relief to the market." The cadence is six days between India-only and universal.\n\nFor Ukraine and Europe the sequence is not ambiguous. Trump\'s own administration added Lukoil and Rosneft to the sanctions list in October 2025, after sustained congressional pressure, as one of the last meaningful acts of economic pressure on Moscow before the Iran war began. That is the architecture GL134 now overrides. Putin told Trump in their 10 March call that Russia was ready to work with European customers again "if they want to return to long-term cooperation." GL134 issued two days later makes that offer structurally available. The European countries that spent three years absorbing the political and economic cost of diversifying away from Russian energy, building LNG import terminals, signing long-term contracts with alternative suppliers at premium rates, weathering inflation driven partly by the transition, are now watching Washington restore Russian access to global markets as a side-effect of a war it started without consulting them.\n\nThe domestic US political logic driving all of this is not concealed. Brent above $100, retail petrol prices sharply up since 28 February, midterms in November. Trump said on 9 March: "I knew oil prices would go up if I did this." Bessent\'s 12 March post adds that "the temporary increase in oil prices is a short-term and temporary disruption that will result in a massive benefit to our nation and economy in the long-term." The Navy is still not ready to escort tankers through Hormuz. The strait is still functionally closed. The well-shutdown problem, Kuwait, Iraq, and UAE cutting production as onshore storage fills, compounds daily. GL134 is the administration reaching for the lever that relieves pressure today. The lever that caused the problem remains unresolved.`,
+  note: 'The progression from GL133 (India only, 30 days, vessels loaded before 5 March) to GL134 (all countries, 30 days, vessels loaded before 12 March) within six days suggests the rolling structure: a new general licence issued every week or two, each with a fresh cut-off date, effectively converting a "temporary" waiver into an indefinite one. Bessent said on 6 March they would keep "a cadence of announcing measures." GL134 is the second beat of that cadence. The question for Ukraine\'s supporters in Congress is whether there is any mechanism to stop the third.',
+  sources: [
+    { platform: 'official', handle: 'Bessent / X @SecScottBessent — GL134 announcement 11:41 PM 12 March: "permit countries to purchase Russian oil currently stranded at sea", extraction tax argument, "massive benefit to our nation and economy in the long-term"', quote: 'To increase the global reach of existing supply, @USTreasury is providing a temporary authorization to permit countries to purchase Russian oil currently stranded at sea. This narrowly tailored, short-term measure applies only to oil already in transit and will not provide significant financial benefit to the Russian government, which derives the majority of its energy revenue from taxes assessed at the point of extraction.', timestamp: '12 Mar 2026', url: 'https://x.com/SecScottBessent/status/2032240591442960393' },
+    { platform: 'official', handle: 'OFAC General Licence 134 — full text: any country, any vessel loaded on or before 12:01 AM EDT 12 March, authorised through 12:01 AM EDT 11 April, covers Lukoil/Rosneft-sanctioned oil explicitly, signed Bradley T. Smith, Director OFAC', quote: 'All transactions...ordinarily incident and necessary to the sale, delivery, or offloading of crude oil or petroleum products of Russian Federation origin loaded on any vessel, including vessels blocked under the above listed authorities, on or before 12:01 a.m. eastern daylight time, March 12, 2026 are authorized through 12:01 a.m. eastern daylight time, April 11, 2026.', timestamp: '12 Mar 2026', url: 'https://ofac.treasury.gov/media/935191/download?inline' },
+    { platform: 'official', handle: 'Kobeissi Letter / X — Russia earning extra $150 million per day from oil sales amid Iran war price surge, Brent above $100', quote: 'Russia is now making an extra $150 million per day from its oil sales amid rising oil prices due to the Iran war.', timestamp: '12 Mar 2026', url: 'https://x.com/KobeissiLetter/status/2032159186029817987' },
+    { platform: 'telegram', handle: 'ClashReport/75393 — Russia $1.3-1.9 billion additional oil tax revenue since war began 28 February', quote: 'Russia has earned $1.3-1.9 billion in additional oil tax revenues since the start of the Iran war on February 28.', timestamp: '12 Mar 2026', url: 'https://t.me/ClashReport/75393' },
+    { platform: 'official', handle: 'Roll Call — India waiver 6 March, Lukoil/Rosneft added October 2025, Wicker "strongly disagrees", Trump 9 March "take sanctions off until this straightens out, maybe won\'t have to put them on", 10 Democratic senators Banking Committee letter', quote: 'By unlocking payment for an estimated 145 million barrels of Russian oil, the license allows billions of dollars to flow into Russia and to Russian intermediaries right as U.S. officials have confirmed that Russia is providing Iranian forces the locations of U.S. assets.', timestamp: '12 Mar 2026', url: 'https://rollcall.com/2026/03/12/ukraine-supporters-oppose-easing-of-russia-sanctions/' },
+    { platform: 'official', handle: 'France24 / Reuters — Trump 10 March press conference after Putin call: "waiving certain oil-related sanctions", no countries specified, permanent lifting if war ends, Dmitriev confirms Washington discussions', quote: 'We\'re also waiving certain oil-related sanctions to reduce prices. We have sanctions on some countries. We\'re going to take sanctions off until this straightens out.', timestamp: '10 Mar 2026', url: 'https://www.france24.com/en/live-news/20260310-trump-says-will-waive-some-oil-sanctions-as-iran-war-roils-markets' },
+    { platform: 'official', handle: 'CNN Business — Brent above $100, Kuwait/Iraq/UAE wells shutting from storage overflow, once-off restart problem, API: "only way out is through", Iran LNG tanker threat hierarchy, Larijani SNSC post', quote: 'The real focus has to be on clearing the strait.', timestamp: '09 Mar 2026', url: 'https://www.cnn.com/2026/03/09/business/oil-iran-strait-navy-economy' },
+    { platform: 'official', handle: 'Times of Israel — Trump-Putin call, Putin "ready for European customers to return to long-term cooperation", Bessent "un-sanctioning hundreds of millions of barrels"', quote: 'Russia was ready to work again with European customers if they want to return to long-term cooperation.', timestamp: '10 Mar 2026', url: 'https://www.timesofisrael.com/trump-putin-talk-of-war-and-peace-as-us-weighs-easing-russian-oil-sanctions/' }
+  ]
+}
+,{
+  id: 54,
+  category: 'analysis',
+  confidence: 'high',
+  tags: ['Ukraine', 'Europe'],
+  date: '12 Mar 2026, 21:00 UTC',
+  title: 'Two boardings in six days. Europe is now routinely seizing Russian shadow fleet vessels at sea, and Russia\'s navy is watching.',
+  deck: 'On 6 March, Swedish special forces fast-roped onto the bulk carrier Caffa south of Trelleborg in an operation named Black Coffee. On 12 March they boarded the tanker Sea Owl I in the same waters — Operation Strix. Sweden\'s Civil Defence Minister Carl-Oskar Bohlin titled his confirmation post "En påtår svart kaffe": another cup of black coffee. Two boardings, same units, same legal mechanism, six days apart. These are not incidents. This is policy.',
+  body: `The Caffa was a 1997-built bulk carrier sailing under a false Guinean flag from Casablanca to St. Petersburg when Swedish Coast Guard interceptors and National Task Force personnel boarded it at 14:00 local time on 6 March. Its Guinean registration was assessed as false; Sweden classified it stateless, which removes the flag state consent requirement under UNCLOS and permits boarding in territorial waters. Ten of its eleven crew were Russian nationals. The captain presented forged certificates. Ukrainian intelligence had already linked the vessel to the transport of grain loaded in occupied Sevastopol in July 2025 — stolen Ukrainian agricultural produce moved under a flag recently acquired to obscure Russian origins. The Swedish Transport Agency declared the ship unseaworthy. The captain has been charged with gross misuse of false documents, violation of maritime law, and violation of ship safety law. The Caffa is not going anywhere.\n\nSix days later, Sea Owl I — a confirmed oil and liquid fuel tanker, sanctioned by the UK, EU, Switzerland, Ukraine, and Canada since autumn 2025, known to have run routes to Morocco, Sri Lanka, Malaysia, and Brazil — exited the Öresund Strait on a southbound course and was boarded south of Trelleborg by the same National Special Intervention Unit that took the Caffa. Operation Strix. Sweden\'s Civil Defence Minister Carl-Oskar Bohlin confirmed it within the hour, titling his post "En påtår svart kaffe." Påtår is Swedish for a coffee refill. Strix is Latin for owl. The naming convention is not coincidence — it is Bohlin publicly signalling that Sweden will board shadow fleet vessels transiting its territorial waters as a matter of routine, and that each operation will be framed as a sequel to the last.\n\nThe two boardings are part of a pattern that is now large enough to call a campaign. The US Navy and Coast Guard seized the tanker Marinera in the North Atlantic in January. The French Navy boarded the Grinch in the Alboran Sea on 22 January — over explicit Russian warnings, naval commandos inserted by NH90 helicopters. Belgium, supported by French forces, seized the tanker Ethera off their coast in late February. Now Sweden twice in a week, holding two vessels in custody with a criminal prosecution underway. This is the December 2024 twelve-country agreement — Britain, Germany, Poland, the Netherlands, the five Nordic states, the three Baltic states — to "disrupt and deter" the shadow fleet now operational, not declaratory. The Caffa operation happened six days into the Iran war, with global maritime security bandwidth almost entirely consumed by Hormuz and the Red Sea. Sweden boarded anyway. Sea Owl I was taken the same evening Treasury issued GL134 authorising any country to buy Russian oil. Europe boarded a sanctioned Russian oil tanker while Washington was lifting the sanctions commercially. The enforcement coalition is not pausing for other people\'s geopolitical noise.\n\nThe Russian response to the escalation has not been passive. Presidential aide Nikolay Patrushev has called on BRICS countries to demonstrate "strategic maritime cooperation" to defend shipping lanes from Western piracy. The Russian Embassy in Stockholm issued a formal protest after the Caffa. More materially: Sweden\'s navy confirmed in December 2025 that armed uniformed personnel from private security companies are present on some shadow fleet vessels, and that the Russian Navy has established a fairly constant presence in specific areas of the Baltic adjacent to shipping lanes. In the boarding of the Boracay one such security operative was a former Wagner member, part of a group founded by a retired FSB colonel. The Russian Navy is not watching its sanctions evasion network get dismantled passively. It is positioning to support it. No direct confrontation between NATO and Russian naval forces has occurred during a boarding. The question of what happens when one does has not been publicly answered by anyone.\n\nFor Russia the cumulative cost is becoming visible. The shadow fleet is the mechanism through which Russia has sustained oil export revenues above the G7 price cap — the revenues funding the Ukraine war. Ukraine\'s sanctions catalogue lists 1,337 vessels. Each one seized, declared unseaworthy, or forced to reroute through longer, more expensive paths is a reduction in that mechanism\'s operational capacity. The Caffa was carrying grain, not oil, which means enforcement has extended beyond the energy sector into the broader sanctions evasion network. Every vessel that cannot transit European waters freely must reroute, pay higher insurance, travel longer distances, or stop operating. That attrition compounds. Bohlin said it directly after Sea Owl I: the shadow fleet is central to Russian economic capacity and to the conditions for continuing the war against Ukraine. A sitting defence minister connecting a coast guard boarding to Ukraine war financing is more candid than most European officials allow themselves in public. It is also accurate.`,
+  note: 'The GL134 timing on 12 March is worth holding in mind: OFAC issued a general licence authorising any country to buy Russian oil from sanctioned vessels the same evening Sweden boarded one. The enforcement architecture and the commercial override are running in opposite directions from the same legal source. The armed Russian security presence on shadow fleet vessels is the escalatory factor that neither Operation Black Coffee nor Operation Strix has yet had to confront directly. Armed FSB-linked contractors on commercial tankers in NATO territorial waters is a different category of risk than forged papers and a false flag. If Sweden boards a vessel with them aboard, the legal and military question of what to do is unanswered. The Ukrainian sanctions list remains the most actionable open-source resource for identifying targets — it flagged the Caffa months before the Swedish interdiction.',
+  sources: [
+    { platform: 'official', handle: 'Carl-Oskar Bohlin / X @CarlOskar — "En påtår svart kaffe", Sea Owl I named, EU sanctions confirmed, National Intervention Unit, shadow fleet as war-financing mechanism statement', quote: 'Kustbevakningen har nu ikväll, för andra gången inom loppet av en vecka, bordat ett misstänkt skuggflottefartyg på svenskt territorialvatten. Fartyget går under namnet Sea Owl 1 och är misstänkt statslöst.', timestamp: '12 Mar 2026', url: 'https://x.com/CarlOskar/status/2032196487795347967' },
+    { platform: 'official', handle: 'Swedish Police (Polismyndigheten) — Operation Strix confirmed, National Special Intervention Unit, false flag suspicion', quote: 'The Swedish Police have assisted the Swedish Coast Guard in a boarding of the tanker Sea Owl I in the Baltic Sea. The operation called "Strix" was carried out Thursday evening by operators from the Police Special Intervention Unit.', timestamp: '12 Mar 2026', url: 'https://polisen.se/aktuellt/nyheter/nationell/2026/mars/tanker-sea-owl-i-boarded-in-the-baltic-sea/' },
+    { platform: 'official', handle: 'Novaya Gazeta Europe / TV4 — Caffa captain charged, forged documents, unseaworthy declaration, Russian nationals crew', quote: 'The charges against a Russian citizen arrested on board the cargo vessel Caffa relate to "gross misuse of false documents, violation of maritime law, and violation of ship safety law."', timestamp: '09 Mar 2026', url: 'https://novayagazeta.eu/amp/articles/2026/03/09/swedish-prosecutors-charge-russian-citizen-after-shadow-fleet-cargo-ship-seized-en-news' },
+    { platform: 'official', handle: 'UNITED24 Media — Operation Svart Kaffe confirmed, Nationella insatsstyrkan, Trelleborg, Caffa Sevastopol grain link, Ukrainian FM Sybiha statement', quote: 'Sanctions work when they are strictly enforced. Together we must stop the activities of Russia\'s shadow fleet to protect Europe\'s security and environment.', timestamp: '07 Mar 2026', url: 'https://united24media.com/latest-news/swedish-special-forces-intercept-shadow-fleet-ship-carrying-grain-from-occupied-ukraine-16608' },
+    { platform: 'official', handle: 'Cornucopia.se — Sea Owl I live report: KBV 003 Amfitrite, AIS blackout, HMS Ulvön patrol, KBV 034 guarding Caffa, 21:49 confirmation, UK/EU/Swiss/Ukraine/Canada sanctions since autumn 2025, Brazil/Morocco/Sri Lanka/Malaysia routes', quote: 'Our overall assessment is that the risk of safety deficiencies on board is high. On this basis, the vessel cannot be considered to fall under what the Law of the Sea defines as innocent passage.', timestamp: '12 Mar 2026', url: 'https://cornucopia.se/2026/03/breaking-swedish-coastguard-have-boarded-russian-shadow-fleeet-tanker-sea-owl-i/' }
+  ]
+},{
+  id: 56,
+  category: 'strike',
+  confidence: 'high',
+  tags: ['Iran', 'Middle East', 'Europe'],
+  date: '13 Mar 2026, 01:20 UTC',
+  title: 'A French soldier is dead in Iraq. Macron says the Iran war cannot justify it. Europe\'s position just got harder.',
+  deck: 'Chief Warrant Officer Arnaud Frion, 7th Battalion of Chasseurs Alpins, Varces, was killed in a drone strike on the French counter-terrorism base at Mala Qara, Makhmour district, Erbil province, on 12 March. Six others were wounded. Macron confirmed his death at 00:37 UTC and stated explicitly that the base existed only to fight ISIS and that the Iran war cannot justify the attack. He is correct on both counts. Neither of those facts changes what happens next.',
+  body: `The strike was carried out by two drones against a joint French-Peshmerga base in the Mala Qara area of Makhmour, approximately 40 kilometres south of Erbil city, on the evening of 12 March local time. Footage geolocated to 35°55'21.93"N 43°25'E confirms the location. The French army confirmed the initial casualty count — six soldiers wounded during counter-terrorism training with Iraqi partners — and said they were immediately evacuated to the nearest medical facility. President Macron confirmed shortly after midnight UTC that one of the wounded had died: Chief Warrant Officer Arnaud Frion of the 7th Battalion of Chasseurs Alpins, based in Varces. Frion is the first French soldier killed in Iraq since France began its counter-ISIS deployment under Operation Chammal in 2015.\n\nNo group has claimed the strike. The Islamic Resistance in Iraq, the umbrella coalition of Iranian-backed factions responsible for the majority of attacks on coalition forces in the country since the war with Iran began on 28 February, is the presumptive actor. The Erbil region had already been saturated with drone activity: the Erbil governor's office recorded 17 separate drone attacks against Erbil overnight into 12 March, all repelled with only material damage. The previous day, a Shahed drone struck the Italian base at Camp Singara, also near Erbil, destroying a military vehicle and damaging infrastructure. Italian Defence Minister Guido Crosetto confirmed the strike on Camp Singara and was unambiguous: "That is a NATO base within Operation Inherent Resolve, so it is also an American base." The Italian base commander said troops had been sheltering in bunkers for hours before impact following aerial threat warnings. No Italian casualties. The French base, struck hours later, was not so fortunate.\n\nMacron's statement did what presidential statements after soldier deaths are supposed to do, but it also contained a political argument delivered with unusual directness. The French forces in Iraq, he said, have been engaged in the strict framework of counter-terrorism against Daesh since 2015. "La guerre en Iran ne saurait justifier de telles attaques" — the war in Iran cannot justify such attacks. The argument is legally and factually sound. France is not a party to the US-Israeli war against Iran. It has not conducted strikes against Iranian territory. Its troops in Iraq are there under a mandate to train Kurdish security forces as part of the 84-nation Operation Inherent Resolve coalition. From the perspective of Iranian-backed militias targeting them, that distinction is largely irrelevant: the French are part of the Western military presence in Iraq, they share infrastructure and intelligence with US forces, and the base at Makhmour is within the geography that the Islamic Resistance in Iraq has designated as legitimate targeting. Macron's framing is the correct framing for a head of state. It is not the framing that will govern what the militias do next.\n\nThe complication for France is that the distinction between "in Iraq for counter-terrorism" and "in the Iran war" has been eroding since 28 February, and Paris has done much of the eroding itself. Macron ordered the Charles de Gaulle carrier strike group, France's only aircraft carrier, to redeploy from the Baltic and North Atlantic to the eastern Mediterranean on 3 March, within days of the war's outbreak. The group arrived in the region by 9 March; Macron boarded the carrier off Cyprus that day. By 9 March he had also announced the deployment of eight additional frigates and two amphibious assault ships, a dozen warships in total, in what the French Navy described as the largest single deployment in decades. Two frigates have been assigned to the EU's EUNAVFOR Aspides mission in the Red Sea. The frigate Languedoc is positioned off Cyprus protecting that island's NATO infrastructure from further Iranian drone strikes. Rafale jets from France's Al-Dhafra base in the UAE have been active in drone interception over the Gulf. France has more active military exposure to the Iran war at this moment than any NATO member except the United States.\n\nMacron's argument, then, is that France's Iraq deployment is categorically separate from its Mediterranean and Gulf posture, and that the militias targeting Mala Qara should recognise that distinction. The Islamic Resistance in Iraq will not. France's counter-terrorism mission in Iraqi Kurdistan and France's carrier strike group off Cyprus are, from the perspective of the actors conducting the attack, two nodes of the same Western military infrastructure that has been at war with Iran's allies and proxies across the region for eleven days. That does not make Macron wrong. It makes his position structurally difficult to hold.\n\nThe death of Frion now creates pressure on France to respond in some form — not to Iran directly, but to the infrastructure enabling the attack. The most visible options are retaliatory strikes against Islamic Resistance in Iraq positions, a formal French Article 5-adjacent consultation within NATO, or an escalation of France's rules of engagement for its Iraq contingent. None of those options is cost-free. A French strike on Iraqi militia positions would set a precedent for direct European combat action against Iranian proxies, potentially pulling Europe into the kinetic phase of the war that Macron has carefully avoided. NATO consultation without military action reinforces the appearance of European impotence. Upgraded rules of engagement for a training mission creates legal and diplomatic complications with the Iraqi government. The option Macron may prefer is the one he has already been executing: strengthen the naval posture, continue the counter-ISIS mandate, insist on the legal distinction between the two missions, and absorb the political cost of the death without retaliating in a way that formally extends European belligerence. That restraint has costs. A French soldier is dead. The French public will note the difference between Macron boarding a carrier in the Mediterranean and Macron explaining why France will not strike back for the death of a soldier in Iraq.`,
+  note: 'The Italian base strike at Camp Singara on 11-12 March is the clearest immediate precedent. No Italian casualties, Italian defence minister explicitly named it as a NATO/Inherent Resolve base. The Mala Qara strike followed within hours and produced a fatality. The pattern across the two strikes — Italian base taken first, French base next — may be sequential pressure on European coalition members to withdraw from Inherent Resolve. The geolocation of 35°55\'21.93"N 43°25\'E places the strike at the Mala Qara training compound south of Makhmour town, consistent with the Erbil governor\'s statement and Reuters reporting on the base location. No group has claimed the attack at time of writing; attribution to Islamic Resistance in Iraq is assessed but unconfirmed.',
+  sources: [
+    { platform: 'twitter', handle: '@EmmanuelMacron — confirmed Arnaud Frion KIA, 7th Chasseurs Alpins Varces, six wounded, counter-terrorism mandate since 2015, Iran war cannot justify', quote: 'L\'adjudant-chef Arnaud Frion du 7ème bataillon de chasseurs alpins de Varces est mort pour la France lors d\'une attaque dans la région d\'Erbil en Irak.', timestamp: '13 Mar 2026, 00:37 UTC', url: 'https://x.com/EmmanuelMacron/status/2032254607695487354' },
+    { platform: 'telegram', handle: 'War&Witness t.me/wfwitness/79192 — footage of strike on Mala Qara base, geolocated 35°55\'21.93"N 43°25\'E', quote: '', timestamp: '12 Mar 2026', url: 'https://t.me/wfwitness/79192' },
+    { platform: 'official', handle: 'Reuters / Erbil Governor Omed Koshnaw — two drones struck joint Peshmerga-French base in Makhmour area, six French soldiers wounded, evacuated', quote: 'Drone attack wounds six French soldiers at joint Peshmerga-France base in Makhmour in northern Iraq.', timestamp: '12 Mar 2026', url: 'https://www.usnews.com/news/world/articles/2026-03-12/drone-attack-wounds-at-least-six-french-soldiers-at-base-in-iraqs-makhmour-erbil-governor-says' },
+    { platform: 'official', handle: 'Gulf News / AFP — French army confirms six soldiers wounded in counter-terrorism training, evacuated to nearest medical facility, strike involved two drones, Mala Qara 40km from Erbil city', quote: 'The troops were "engaged in training activities on counterterrorism with Iraqi partners."', timestamp: '12 Mar 2026', url: 'https://gulfnews.com/world/mena/6-french-soldiers-wounded-in-iraqi-kurdistan-drone-attack-french-military-1.500472774' },
+    { platform: 'official', handle: 'ANSA / Il Sole 24 Ore — Camp Singara Italian base struck 11-12 March, Shahed drone, military vehicle destroyed, no Italian casualties, Crosetto confirms NATO/Inherent Resolve base, Tajani condemns', quote: '"That is a NATO base within Operation Inherent Resolve, so it is also an American base."', timestamp: '12 Mar 2026', url: 'https://www.ansa.it/english/news/2026/03/12/italian-base-in-erbil-iraq-attacked-troops-not-injured_9b16f7ae-28ca-4c6f-9a78-0afcae805114.html' },
+    { platform: 'official', handle: 'USNI News / Defense News — Charles de Gaulle CSG deployed to eastern Med, 8 frigates and 2 LHDs announced 9 March, Languedoc off Cyprus, Rafales active UAE, two frigates to EUNAVFOR Aspides', quote: '', timestamp: '09 Mar 2026', url: 'https://news.usni.org/2026/03/09/french-navy-pledges-10-additional-warships-to-middle-east-escorts-for-strait-of-hormuz' }
+  ]
+},{
+  id: 57,
+  category: 'analysis',
+  confidence: 'high',
+  tags: ['Iran', 'Middle East', 'Africa'],
+  date: '12 Mar 2026, 14:30 UTC',
+  title: 'The Iran war is bleeding the RSF\'s primary backer dry. Sudan\'s army is winning while nobody is watching.',
+  deck: 'The Sudanese Armed Forces recaptured Bara — the strategic North Kordofan city linking Khartoum to El-Obeid — on 5 March, destroying 32 RSF combat vehicles and killing dozens of fighters. The world was not watching. The UAE, which has financed the RSF\'s weapons, training, and foreign fighter recruitment since 2023, is currently coordinating air defence operations against Iranian missile strikes, absorbing Iranian drone attacks on its ports, and deploying diplomatic capital to keep its own territory from becoming a direct target. The RSF\'s prime backer has not exited Sudan. But it is significantly less available than it was on 27 February.',
+  body: `The SAF's 5 March capture of Bara is strategically significant in ways the Iran-saturated news cycle has almost entirely ignored. Bara sits approximately 40 miles north of El-Obeid, the capital of North Kordofan state, on the only direct highway linking Khartoum to the Darfur region. The RSF had been using it as a staging point for attacks on El-Obeid — a city it needs to control if it is to cut the SAF's central corridor and connect its Darfur holdings to the rest of Sudan. The SAF's air force carried out intensive strikes in the early hours of 5 March against RSF positions inside the city, destroying heavy combat vehicles and killing dozens of fighters before ground forces entered. An SAF source told Al Jazeera 32 RSF combat vehicles were destroyed in the operation. The RSF security adviser to its commander Mohamed Hamdan Dagalo, Hamid Ali Abubakar, was killed in a drone strike near Zalingei, Central Darfur, the same day. Bara had changed hands multiple times since late 2025. The SAF now holds it. The Jabra El-Sheikh locality to the north remains contested, and controlling it would allow the SAF to move supplies directly between Khartoum and El-Obeid rather than the much longer Kosti route. But the direction of momentum has shifted.\n\nThe UAE connection to the RSF is documented, significant, and now under strain in ways the conflict in Sudan had not previously produced. Reuters reported in February 2026 that the UAE financed the construction of an RSF training camp in western Ethiopia, providing military trainers and logistical support, with 4,300 fighters in training there as of January 2026. The UAE has long denied direct involvement. The February Reuters report, sourced to eight officials including a senior Ethiopian government figure, is the most direct public evidence of the relationship. That is the backer. The backer is currently absorbing Iranian drone strikes on its ports — Jebel Ali was hit on 4 March, Dubai Airport was hit twice — coordinating with US and Israeli air defence assets, contributing diplomatically to the coalition managing the Gulf theatre, and watching its own energy infrastructure become a target. Abu Dhabi has not issued public statements about Sudan since 28 February. That silence is itself data.\n\nThe network of external actors involved in Sudan is more complex and more destabilised by the Iran war than the UAE connection alone suggests. Egypt has been coordinating drone strikes against RSF supply lines near the Egyptian-Sudanese border from a drone base on Egyptian territory since late 2025, according to Critical Threats. Egypt is also managing the economic shock of the Iran war — Suez Canal revenues have collapsed as shipping diverts away from the Red Sea, a catastrophic blow to an economy already under severe IMF fiscal pressure. Egypt's ability to sustain active material support for the SAF while absorbing that economic hit is a constraint that was not present two months ago. Eritrea has been facilitating SAF weapons shipments and hosting rear bases for SAF-aligned militias, but Eritrea and Ethiopia are in a state of severe mutual hostility, and the Ethiopia-RSF axis creates pressure on Eritrea that is separate from and compounded by the wider regional disruption. South Sudan, meanwhile, has had its fighters captured by the SAF fighting alongside the RSF in North Kordofan as recently as 5 March, despite the SSPDF's nominal neutral protection role over the Heglig oil fields.\n\nEthiopia's position is the most complex in the region and the least affected by the Iran war in a direct sense. Addis Ababa is hosting an RSF training camp, allegedly allowing the RSF to launch attack drones from western Ethiopian territory, and has seen its drone strikes in SAF-held territory surge in 2026 to levels exceeding the entire preceding three years of the war combined, per ACLED data. Ethiopia's incentive is not ideological alignment with the RSF — it is the calculation that a weakened, divided Sudan is less able to challenge Ethiopian interests on the Nile and less likely to project power toward the Grand Ethiopian Renaissance Dam. That calculation is unchanged by the Iran war. Ethiopia is not a Gulf state. It is not spending interceptors on Iranian ballistic missiles. Its material capacity to support RSF operations has, if anything, increased as Gulf attention pivoted away from the Horn of Africa.\n\nWhat the Iran war has specifically disrupted is the financial and logistical infrastructure the UAE constructed for the RSF. Satellite imagery and open-source tracking had been showing regular UAE cargo flights to Port Sudan and to airstrips in RSF-controlled Darfur. Those flights appear to have significantly decreased since 28 February. The UAE's immediate security priorities are its own ports, its own airspace, and its own diplomatic position in a conflict that has brought Iranian missiles to within kilometres of its civilian infrastructure. The RSF's weapons pipeline from Abu Dhabi runs through a series of commercial and state logistics channels that require active maintenance and political cover to function. Political cover requires attention. Attention is elsewhere.\n\nAl Jazeera noted directly in its 6 March Bara coverage what the international community had failed to: while the world focuses on the US-Israel war on Iran and its reverberations across the Middle East, the brutal civil war in Sudan is nearly three years long now. That observation is not merely a humanitarian lament. It describes a structural condition. The UN Security Council's Sudan briefing track has been crowded out by emergency Lebanon and Iran sessions. The diplomatic bandwidth of the states most involved in Sudan — UAE, Egypt, Saudi Arabia, Ethiopia — is consumed by the Gulf crisis. The RSF is fighting on momentum, Ethiopian logistics, and whatever remains of the UAE supply chain. The SAF is fighting with Iranian-supplied drones, Egyptian air support, and the operational advantage of a military that has been winning steadily since recapturing Khartoum a year ago. One of those support structures has just been partially severed by a war 4,000 kilometres away. The other has not.`,
+  note: 'The RSF\'s Kordofan offensive is the strategic counterweight to watch — Bara is captured but the RSF seized Bardab village on the same day and the Kadugli-Dilling siege has been partially reimposed after SAF lifted it in January. The SAF is winning the Kordofan corridor battle but it is not winning everywhere simultaneously. The Jabra El-Sheikh position north of Bara is the next key node: if the SAF takes it, the supply corridor to El-Obeid becomes direct and the RSF\'s ability to stage further attacks on the city from the north is eliminated. The Ethiopia angle is the most underreported element — Asosa Airport drone infrastructure and the RSF\'s surge in Blue Nile drone strikes are an escalation that Egyptian and Eritrean actors may eventually respond to in ways that widen the conflict further.',
+  sources: [
+    { platform: 'official', handle: 'Al Jazeera — SAF capture of Bara confirmed, 32 RSF vehicles destroyed, RSF adviser Hamid Ali Abubakar KIA near Zalingei, Sudan civil war framing vs Iran war coverage', quote: 'While the world focuses on the United States-Israel war on Iran and its reverberations with Tehran\'s retaliatory strikes across the Middle East, the brutal civil war in Sudan is nearly three years long now.', timestamp: '06 Mar 2026', url: 'https://www.aljazeera.com/news/2026/3/6/sudanese-army-recaptures-bara-city-in-north-kordofan' },
+    { platform: 'official', handle: 'Reuters — UAE financed RSF training camp in western Ethiopia, 4,300 fighters in training as of January 2026, military trainers and logistical support, eight officials including senior Ethiopian government figure', quote: '', timestamp: 'Feb 2026', url: 'https://www.reuters.com/world/africa/uae-built-rsf-training-camp-ethiopia-sources-say-2026-02/' },
+    { platform: 'official', handle: 'Critical Threats — Egypt drone strikes against RSF supply lines near Egyptian-Sudanese border from Egyptian territory, operational since late 2025', quote: '', timestamp: 'Mar 2026', url: 'https://www.criticalthreats.org/analysis/sudan-war-external-actors' },
+    { platform: 'official', handle: 'ACLED — RSF drone strikes in SAF-held territory from Ethiopian territory surge 2026, exceeding combined total of prior three years', quote: '', timestamp: 'Mar 2026', url: 'https://acleddata.com/Sudan' }
+  ]
+}
 ];
 let nextId = posts.length + 1;
 
@@ -2015,18 +2339,21 @@ function renderPosts(filter = 'all', query = '') {
       : '';
 
     return `
-    <article class="post" id="post-${p.id}" style="animation-delay:${i * 0.06}s">
+    <article class="post" id="post-${p.id}" style="animation-delay:${i * 0.06}s;position:relative">
       <div class="post-meta-top">
         <span class="post-category ${catClass}">${catLabel}</span>
         <span class="post-date">${p.date}</span>
         <span class="post-confidence ${confClass}">${confLabel}</span>
       </div>
-      <h3><a href="#post-${p.id}">${displayTitle}</a></h3>
+      <h3><a href="#post-${p.id}" onclick="openArticlePage(${p.id}); return false;">${displayTitle}</a></h3>
       <div class="post-deck">${displayDeck}</div>
       <div class="post-body">${bodyHtml}</div>
       ${noteHtml}
       ${sourcesHtml}
-      ${tagsHtml}
+      <div class="post-footer">
+        <div>${tagsHtml}</div>
+        <button class="share-icon-card" title="Copy link" onclick="copyPostLink(${p.id}, this)">⧉ SHARE</button>
+      </div>
     </article>`;
   }).join('');
 
@@ -2265,6 +2592,159 @@ function publishPost() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// =========== ARTICLE MODAL ROUTING ===========
+function slugify(title) {
+  return title.toLowerCase()
+    .replace(/[\u2018\u2019\u201c\u201d"'.!?,;:()\[\]{}]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60);
+}
+
+function openArticlePage(id) {
+  const p = posts.find(x => x.id === id);
+  if (!p) return;
+
+  const catLabel = { strike: 'STRIKE REPORT', geolocation: 'GEOLOCATION', analysis: 'ANALYSIS', breaking: '\u25cf BREAKING', conflict: 'CONFLICT REPORT' }[p.category] || p.category.toUpperCase();
+  const confLabel = { high: '\u25c6 HIGH CONFIDENCE', medium: '\u25c7 MEDIUM CONFIDENCE', low: '\u25cb LOW CONFIDENCE' }[p.confidence] || '';
+
+  const catColor = { analysis: 'var(--gold)', strike: 'var(--accent)', geolocation: 'var(--accent2)', breaking: 'var(--accent)', conflict: '#5a7a4a' }[p.category] || 'var(--gold)';
+  const inner = document.querySelector('.article-page-inner');
+  if (inner) inner.style.borderTop = `3px solid ${catColor}`;
+  const catClass = { analysis: 'analysis', geolocation: 'geo', breaking: 'breaking', conflict: 'conflict' }[p.category] || '';
+  const confClass = { high: 'conf-high', medium: 'conf-med', low: 'conf-low' }[p.confidence] || '';
+  document.getElementById('ap-category').className = `post-category ${catClass}`;
+  document.getElementById('ap-category').textContent = catLabel;
+  document.getElementById('ap-date').className = 'post-date';
+  document.getElementById('ap-date').textContent = p.date;
+  document.getElementById('ap-confidence').className = `post-confidence ${confClass}`;
+  document.getElementById('ap-confidence').textContent = confLabel;
+  document.getElementById('ap-title').textContent = p.title;
+  document.getElementById('ap-deck').className = 'post-deck';
+  document.getElementById('ap-deck').textContent = p.deck;
+
+  const bodyHtml = p.body.split('\n\n').map(para => para.startsWith('<') ? para : `<p>${para}</p>`).join('');
+  document.getElementById('ap-body').innerHTML = bodyHtml;
+
+  const noteEl = document.getElementById('ap-note');
+  noteEl.innerHTML = p.note ? `<div class="analyst-note" style="margin-top:28px">${p.note}</div>` : '';
+
+  const sourcesEl = document.getElementById('ap-sources');
+  sourcesEl.innerHTML = p.sources && p.sources.length ? `
+    <div class="sources-toggle open" onclick="toggleSources(this)" style="margin-top:24px">
+      <span class="sources-toggle-label">
+        <span class="sources-toggle-icon">\u25bc</span>
+        Sources <span class="sources-count">(${p.sources.length})</span>
+      </span>
+    </div>
+    <div class="sources-collapsible open">
+      <div class="sources-grid">
+        ${p.sources.map(s => `
+          <div class="source-card ${s.platform}">
+            <span class="source-platform ${s.platform}">${s.platform.toUpperCase()}</span>
+            <div class="source-content">
+              <div class="source-handle">${s.handle}</div>
+              <div class="source-quote">"${s.quote}"</div>
+              ${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" class="source-url">\u2197 ${s.url}</a>` : ''}
+            </div>
+            <div class="source-timestamp">${s.timestamp}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>` : '';
+
+  const tagsEl = document.getElementById('ap-tags');
+  tagsEl.innerHTML = p.tags && p.tags.length
+    ? `<div class="post-tags" style="margin-top:20px">${p.tags.map(t => `<span class="post-tag">${t}</span>`).join('')}</div>`
+    : '';
+
+  const slug = slugify(p.title);
+  history.pushState({ postId: id, slug }, '', `#${slug}`);
+
+  const modal = document.getElementById('article-page');
+  modal.classList.add('visible');
+  modal.querySelector('.article-page-inner').scrollTop = 0;
+  document.body.classList.add('modal-open');
+  // Start lava after a short delay so modal open animation plays first
+  setTimeout(() => window.startModalLava && window.startModalLava(), 280);
+}
+
+function closeArticlePage() {
+  const modal = document.getElementById('article-page');
+  const inner = modal.querySelector('.article-page-inner');
+  const backdrop = document.getElementById('article-page-backdrop');
+
+  window.stopModalLava && window.stopModalLava();
+  if (inner) inner.style.animation = 'modalSlideOut 0.28s cubic-bezier(0.4,0,0.8,1) forwards';
+  if (backdrop) backdrop.style.animation = 'backdropOut 0.38s cubic-bezier(0.4,0,0.6,1) forwards';
+
+  setTimeout(() => {
+    modal.classList.remove('visible');
+    document.body.classList.remove('modal-open');
+    if (inner) inner.style.animation = '';
+    if (backdrop) backdrop.style.animation = '';
+  }, 360);
+
+  history.pushState(null, '', window.location.pathname);
+}
+
+function copyArticleLink() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById('ap-share-btn');
+    btn.textContent = '\u29c9 COPIED';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '\u29c9 COPY LINK'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyPostLink(id, el) {
+  const p = posts.find(x => x.id === id);
+  const slug = p ? slugify(p.title) : 'post-' + id;
+  const url = window.location.origin + window.location.pathname + '#' + slug;
+  navigator.clipboard.writeText(url).then(() => {
+    el.textContent = '\u2713';
+    el.classList.add('copied');
+    setTimeout(() => { el.textContent = '\u29c9'; el.classList.remove('copied'); }, 2000);
+  });
+}
+
+window.addEventListener('popstate', (e) => {
+  if (e.state && e.state.postId) {
+    openArticlePage(e.state.postId);
+  } else {
+    document.getElementById('article-page').classList.remove('visible');
+    document.body.classList.remove('modal-open');
+  }
+});
+
+// Redirect scroll on backdrop into the modal inner div
+document.addEventListener('DOMContentLoaded', () => {
+  const backdrop = document.getElementById('article-page-backdrop');
+  const modalPage = document.getElementById('article-page');
+  if (backdrop) {
+    backdrop.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const inner = modalPage.querySelector('.article-page-inner');
+      if (inner) inner.scrollTop += e.deltaY;
+    }, { passive: false });
+    backdrop.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+    }, { passive: false });
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeArticlePage();
+});
+
+window.addEventListener('load', () => {
+  const hash = window.location.hash.replace('#', '');
+  if (hash) {
+    const matched = posts.find(p => slugify(p.title) === hash);
+    if (matched) setTimeout(() => openArticlePage(matched.id), 150);
+  }
+});
 // =========== CLOCK ===========
 function tick() {
   const now = new Date();
@@ -2460,6 +2940,104 @@ renderPosts('all');
     }, 30);
   };
 })();
+
+// =========== MODAL BACKDROP AMBIENT LIGHT ===========
+(function() {
+  let raf = null;
+  let running = false;
+  let opacity = 0;
+  let targetOpacity = 0;
+  const t0 = performance.now();
+
+  // Option B — Gallery Night
+  const palette = [
+    [195, 145,  15],  // antique gold
+    [215, 120,  20],  // apricot
+    [ 90,  20,  70],  // plum
+    [195, 145,  15],  // antique gold (weighted)
+    [155,  55,  10],  // terracotta
+    [ 75,  15,  55],  // deep plum
+  ];
+
+  // Two wide, low light sources anchored near the bottom
+  // Same colour phase — they move in sync, just offset horizontally
+  let colOffset = 0;
+  const lights = [
+    { x: 0.28, phase: 0.0 },
+    { x: 0.72, phase: 1.2 },
+  ];
+
+  function lerpColor(a, b, t) {
+    return [
+      a[0] + (b[0]-a[0]) * t,
+      a[1] + (b[1]-a[1]) * t,
+      a[2] + (b[2]-a[2]) * t,
+    ];
+  }
+
+  function getColor(colPhase, t) {
+    // Very slow cycle — full rotation every ~50s
+    const speed = 0.02;
+    const pos = ((t * speed + colPhase) % palette.length + palette.length) % palette.length;
+    const i = Math.floor(pos);
+    const frac = pos - i;
+    return lerpColor(palette[i], palette[(i+1) % palette.length], frac);
+  }
+
+  function tick(canvas, ctx) {
+    const t = (performance.now() - t0) * 0.001;
+    const w = canvas.width, h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    opacity += (targetOpacity - opacity) * 0.025;
+
+    if (opacity > 0.002) {
+      for (const l of lights) {
+        // Gentle horizontal sway, stays anchored near bottom 80-100% of screen height
+        const cx = (l.x + Math.sin(t * 0.04 + l.phase) * 0.12) * w;
+        const cy = h + h * 0.05; // just below bottom edge — light rises upward
+        // Wide, tall gradient that bleeds upward from the floor
+        const r = w * 0.75;
+        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        const [r0,g0,b0] = getColor(colOffset, t);
+        grad.addColorStop(0,    `rgba(${r0|0},${g0|0},${b0|0},${0.14 * opacity})`);
+        grad.addColorStop(0.35, `rgba(${r0|0},${g0|0},${b0|0},${0.05 * opacity})`);
+        grad.addColorStop(0.7,  `rgba(${r0|0},${g0|0},${b0|0},${0.01 * opacity})`);
+        grad.addColorStop(1,    `rgba(${r0|0},${g0|0},${b0|0},0)`);
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+      }
+
+    }
+
+    const settled = Math.abs(opacity - targetOpacity) < 0.003;
+    if (settled && targetOpacity === 0) {
+      ctx.clearRect(0, 0, w, h);
+      running = false; raf = null;
+      return;
+    }
+    raf = requestAnimationFrame(() => tick(canvas, ctx));
+  }
+
+  function getCanvas() { return document.getElementById('modal-lava-canvas'); }
+
+  window.startModalLava = function() {
+    const canvas = getCanvas();
+    if (!canvas) return;
+    const container = document.getElementById('article-page-backdrop');
+    canvas.width  = container.offsetWidth  || window.innerWidth;
+    canvas.height = container.offsetHeight || window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    colOffset += 0.8 + Math.random() * 1.4;
+    targetOpacity = 1;
+    if (!running) { running = true; raf = requestAnimationFrame(() => tick(canvas, ctx)); }
+  };
+
+  window.stopModalLava = function() {
+    targetOpacity = 0;
+  };
+})();
+
 </script>
 </body>
 </html>
