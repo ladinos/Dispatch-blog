@@ -2977,6 +2977,243 @@ function clearSearch() {
 }
 
 
+
+// =========== SLUGIFY ===========
+function slugify(text) {
+  return text.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim()
+    .substring(0, 80);
+}
+
+// =========== COPY POST LINK ===========
+function copyPostLink(id, el) {
+  const p = posts.find(x => x.id === id);
+  const slug = p ? slugify(p.title) : 'post-' + id;
+  const url = window.location.origin + window.location.pathname + '#' + slug;
+  navigator.clipboard.writeText(url).then(() => {
+    el.textContent = '✓';
+    el.classList.add('copied');
+    setTimeout(() => { el.textContent = '⧉'; el.classList.remove('copied'); }, 2000);
+  });
+}
+
+// =========== ARTICLE PAGE (DESKTOP MODAL) ===========
+function openArticlePage(id) {
+  const p = posts.find(x => x.id === id);
+  if (!p) return;
+
+  // On mobile, navigate to a full page instead of modal
+  if (window.innerWidth <= 520) {
+    history.pushState({ postId: id }, '', '?post=' + id);
+    renderMobileArticlePage(id);
+    return;
+  }
+
+  const catLabel = { strike: 'STRIKE REPORT', geolocation: 'GEOLOCATION', analysis: 'ANALYSIS', breaking: '\u25cf BREAKING', conflict: 'CONFLICT REPORT' }[p.category] || p.category.toUpperCase();
+  const confLabel = { high: '\u25c6 HIGH CONFIDENCE', medium: '\u25c7 MEDIUM CONFIDENCE', low: '\u25cb LOW CONFIDENCE' }[p.confidence] || '';
+  const catColor = { analysis: 'var(--gold)', strike: 'var(--accent)', geolocation: 'var(--accent2)', breaking: 'var(--accent)', conflict: '#5a7a4a' }[p.category] || 'var(--gold)';
+  const inner = document.querySelector('.article-page-inner');
+  if (inner) inner.style.borderTop = '3px solid ' + catColor;
+  const catClass = { analysis: 'analysis', geolocation: 'geo', breaking: 'breaking', conflict: 'conflict' }[p.category] || '';
+  const confClass = { high: 'conf-high', medium: 'conf-med', low: 'conf-low' }[p.confidence] || '';
+
+  document.getElementById('ap-category').className = 'post-category ' + catClass;
+  document.getElementById('ap-category').textContent = catLabel;
+  document.getElementById('ap-date').className = 'post-date';
+  document.getElementById('ap-date').textContent = p.date;
+  document.getElementById('ap-confidence').className = 'post-confidence ' + confClass;
+  document.getElementById('ap-confidence').textContent = confLabel;
+  document.getElementById('ap-title').textContent = p.title;
+  document.getElementById('ap-deck').className = 'post-deck';
+  document.getElementById('ap-deck').textContent = p.deck;
+
+  const bodyHtml = p.body.split('\n\n').map(para => para.startsWith('<') ? para : '<p>' + para + '</p>').join('');
+  document.getElementById('ap-body').innerHTML = bodyHtml;
+
+  const noteEl = document.getElementById('ap-note');
+  noteEl.innerHTML = p.note ? '<div class="analyst-note" style="margin-top:28px">' + p.note + '</div>' : '';
+
+  const sourcesEl = document.getElementById('ap-sources');
+  sourcesEl.innerHTML = p.sources && p.sources.length ? `
+    <div class="sources-toggle open" onclick="toggleSources(this)" style="margin-top:24px">
+      <span class="sources-toggle-label">
+        <span class="sources-toggle-icon">\u25bc</span>
+        Sources <span class="sources-count">(${p.sources.length})</span>
+      </span>
+    </div>
+    <div class="sources-collapsible open">
+      <div class="sources-grid">
+        ${p.sources.map(s => `
+          <div class="source-card ${s.platform}">
+            <span class="source-platform ${s.platform}">${s.platform.toUpperCase()}</span>
+            <div class="source-content">
+              <div class="source-handle">${s.handle}</div>
+              <div class="source-quote">"${s.quote}"</div>
+              ${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" class="source-url">\u2197 ${s.url}</a>` : ''}
+            </div>
+            <div class="source-timestamp">${s.timestamp}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>` : '';
+
+  const tagsEl = document.getElementById('ap-tags');
+  tagsEl.innerHTML = p.tags && p.tags.length
+    ? '<div class="post-tags" style="margin-top:20px">' + p.tags.map(t => '<span class="post-tag">' + t + '</span>').join('') + '</div>'
+    : '';
+
+  const slug = slugify(p.title);
+  history.pushState({ postId: id, slug }, '', '#' + slug);
+
+  const modal = document.getElementById('article-page');
+  modal.classList.add('visible');
+  modal.querySelector('.article-page-inner').scrollTop = 0;
+  document.body.classList.add('modal-open');
+  setTimeout(() => window.startModalLava && window.startModalLava(), 280);
+}
+
+function closeArticlePage() {
+  const modal = document.getElementById('article-page');
+  const inner = modal.querySelector('.article-page-inner');
+  const backdrop = document.getElementById('article-page-backdrop');
+
+  window.stopModalLava && window.stopModalLava();
+  if (inner) inner.style.animation = 'modalSlideOut 0.28s cubic-bezier(0.4,0,0.8,1) forwards';
+  if (backdrop) backdrop.style.animation = 'backdropOut 0.38s cubic-bezier(0.4,0,0.6,1) forwards';
+
+  setTimeout(() => {
+    modal.classList.remove('visible');
+    document.body.classList.remove('modal-open');
+    if (inner) inner.style.animation = '';
+    if (backdrop) backdrop.style.animation = '';
+  }, 360);
+
+  history.pushState(null, '', window.location.pathname);
+}
+
+function copyArticleLink() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById('ap-share-btn');
+    btn.textContent = '\u29c9 COPIED';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '\u29c9 COPY LINK'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// =========== MOBILE ARTICLE PAGE ===========
+function renderMobileArticlePage(id) {
+  const p = posts.find(x => x.id === id);
+  if (!p) return;
+
+  const catLabel = { strike: 'STRIKE REPORT', geolocation: 'GEOLOCATION', analysis: 'ANALYSIS', breaking: '\u25cf BREAKING', conflict: 'CONFLICT REPORT' }[p.category] || p.category.toUpperCase();
+  const confLabel = { high: '\u25c6 HIGH CONFIDENCE', medium: '\u25c7 MEDIUM CONFIDENCE', low: '\u25cb LOW CONFIDENCE' }[p.confidence] || '';
+  const catClass = { analysis: 'analysis', geolocation: 'geo', breaking: 'breaking', conflict: 'conflict' }[p.category] || '';
+  const confClass = { high: 'conf-high', medium: 'conf-med', low: 'conf-low' }[p.confidence] || '';
+  const catColor = { analysis: 'var(--gold)', strike: 'var(--accent)', geolocation: 'var(--accent2)', breaking: 'var(--accent)', conflict: '#5a7a4a' }[p.category] || 'var(--gold)';
+
+  const bodyHtml = p.body.split('\n\n').map(para => para.startsWith('<') ? para : '<p>' + para + '</p>').join('');
+  const noteHtml = p.note ? '<div class="analyst-note" style="margin-top:28px">' + p.note + '</div>' : '';
+  const tagsHtml = p.tags && p.tags.length ? '<div class="post-tags">' + p.tags.map(t => '<span class="post-tag">' + t + '</span>').join('') + '</div>' : '';
+  const tagsCopyRow = `<div style="display:flex;align-items:flex-start;justify-content:space-between;margin-top:20px;gap:12px;"><div style="display:flex;flex-wrap:wrap;gap:6px;max-width:52%;">${tagsHtml ? p.tags.map(t=>'<span class="post-tag">'+t+'</span>').join('') : ''}</div><button class="article-page-share" onclick="copyMobileArticleLink()" style="flex-shrink:0;align-self:flex-start;margin:0 !important;padding:6px 12px;line-height:1;display:inline-flex;align-items:center;">\u29c9 COPY LINK</button></div>`;
+
+  const sourcesHtml = p.sources && p.sources.length ? `
+    <div class="sources-toggle open" onclick="toggleSources(this)" style="margin-top:24px">
+      <span class="sources-toggle-label">
+        <span class="sources-toggle-icon">\u25bc</span>
+        Sources <span class="sources-count">(${p.sources.length})</span>
+      </span>
+    </div>
+    <div class="sources-collapsible open">
+      <div class="sources-grid">
+        ${p.sources.map(s => `
+          <div class="source-card ${s.platform}">
+            <span class="source-platform ${s.platform}">${s.platform.toUpperCase()}</span>
+            <div class="source-content">
+              <div class="source-handle">${s.handle}</div>
+              <div class="source-quote">"${s.quote}"</div>
+              ${s.url ? '<a href="'+s.url+'" target="_blank" rel="noopener" class="source-url">\u2197 '+s.url+'</a>' : ''}
+            </div>
+            <div class="source-timestamp">${s.timestamp}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>` : '';
+
+  const now = new Date();
+  const clockStr = now.toUTCString().replace('GMT','UTC').slice(5,25);
+
+  const page = document.getElementById('mobile-article-page');
+  page.innerHTML = `
+    <div class="top-bar" style="justify-content:center;">
+      <span id="map-clock">${clockStr}</span>
+    </div>
+    <div class="masthead" style="cursor:pointer;" onclick="closeMobileArticlePage()">
+      <div class="masthead-rule"></div>
+      <div class="masthead-label">Sultan Aben — Independent Researcher</div>
+      <div class="masthead-title">AUGUR</div>
+    </div>
+    <nav style="position:relative;">
+      <div style="flex:1; display:flex; align-items:center; padding:0 16px;">
+        <button onclick="closeMobileArticlePage()" style="background:none;border:none;color:rgba(255,255,255,0.7);font-family:var(--mono);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;padding:14px 0;">← BACK TO DISPATCHES</button>
+      </div>
+    </nav>
+    <div style="background:var(--paper); padding:28px 24px 28px; border-top:3px solid ${catColor};">
+      <div class="article-page-masthead">
+        <span class="post-category ${catClass}">${catLabel}</span>
+        <span class="post-date">${p.date}</span>
+        <span class="post-confidence ${confClass}">${confLabel}</span>
+      </div>
+      <h1 class="article-page-title">${p.title}</h1>
+      <div class="post-deck">${p.deck}</div>
+      <div class="article-page-body">${bodyHtml}</div>
+      ${noteHtml}
+      ${sourcesHtml}
+      ${tagsCopyRow}
+    </div>
+    <footer>
+      <div class="footer-title">AUGUR</div>
+      <div class="footer-sub">Sultan Aben — Independent Researcher</div>
+      <p class="footer-disclaimer">All material is for research and documentation purposes. Sources are cited directly. Confidence ratings reflect the analyst's assessment of corroboration quality.</p>
+    </footer>
+  `;
+  page.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  document.body.style.position = 'fixed';
+  document.body.style.width = '100%';
+  page.scrollTop = 0;
+  document.getElementById('article-page').classList.remove('visible');
+
+  const mapClockEl = document.getElementById('map-clock');
+  if (mapClockEl) {
+    const interval = setInterval(() => {
+      if (!document.getElementById('map-clock')) { clearInterval(interval); return; }
+      const n = new Date();
+      document.getElementById('map-clock').textContent = n.toUTCString().replace('GMT','UTC').slice(5,25);
+    }, 1000);
+  }
+}
+
+function closeMobileArticlePage() {
+  const page = document.getElementById('mobile-article-page');
+  page.style.display = 'none';
+  page.innerHTML = '';
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.width = '';
+  history.pushState(null, '', window.location.pathname);
+}
+
+function copyMobileArticleLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.querySelector('#mobile-article-page .article-page-share');
+    if (btn) { btn.textContent = '\u29c9 COPIED'; setTimeout(() => { btn.textContent = '\u29c9 COPY LINK'; }, 2000); }
+  });
+}
+
 window.addEventListener('popstate', (e) => {
   // Close mobile article page if open
   const mobilePage = document.getElementById('mobile-article-page');
