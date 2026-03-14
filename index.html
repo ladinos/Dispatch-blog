@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DISPATCH — Sultan Aben, Independent Researcher</title>
+<title>AUGUR — Sultan Aben, Independent Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -861,141 +861,6 @@ footer {
 .footer-disclaimer { font-size: 12px; color: var(--dim2); max-width: 600px; margin: 0 auto; line-height: 1.7; }
 
 /* ======= ADMIN PANEL ======= */
-#admin-toggle {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: var(--ink);
-  color: var(--paper);
-  border: none;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 1px;
-  padding: 10px 16px;
-  cursor: pointer;
-  z-index: 500;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  transition: background 0.2s;
-}
-#admin-toggle:hover { background: var(--accent); }
-
-.admin-panel {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(10,8,6,0.75);
-  z-index: 600;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.admin-panel.open { display: flex; }
-.admin-box {
-  background: var(--cream);
-  border: 2px solid var(--ink);
-  padding: 32px;
-  width: 100%;
-  max-width: 700px;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-.admin-box::-webkit-scrollbar { width: 4px; }
-.admin-box::-webkit-scrollbar-thumb { background: var(--rule); }
-.admin-title {
-  font-family: var(--display);
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.admin-sub { font-family: var(--mono); font-size: 11px; color: var(--dim2); letter-spacing: 1px; margin-bottom: 24px; }
-.form-group { margin-bottom: 16px; }
-.form-group label {
-  display: block;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--dim);
-  margin-bottom: 6px;
-}
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  background: #fff;
-  border: 1px solid var(--rule);
-  color: var(--ink);
-  font-family: var(--serif);
-  font-size: 14px;
-  padding: 8px 12px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus { border-color: var(--accent2); }
-.form-group textarea { min-height: 80px; resize: vertical; line-height: 1.6; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.admin-actions { display: flex; gap: 10px; margin-top: 20px; }
-.btn-publish {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 10px 24px;
-  cursor: pointer;
-  flex: 1;
-  transition: opacity 0.15s;
-}
-.btn-publish:hover { opacity: 0.85; }
-.btn-cancel {
-  background: transparent;
-  border: 1px solid var(--rule);
-  color: var(--dim);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 1px;
-  padding: 10px 16px;
-  cursor: pointer;
-  transition: border-color 0.2s;
-}
-.btn-cancel:hover { border-color: var(--ink); color: var(--ink); }
-
-/* Source form rows */
-.source-rows {}
-.source-row-item {
-  background: var(--paper2);
-  border: 1px solid var(--rule);
-  padding: 12px;
-  margin-bottom: 8px;
-}
-.source-row-item .form-row { margin-bottom: 8px; }
-.add-source-btn {
-  background: transparent;
-  border: 1px dashed var(--rule);
-  color: var(--dim);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 1px;
-  padding: 8px;
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
-  transition: all 0.15s;
-}
-.add-source-btn:hover { border-color: var(--accent2); color: var(--accent2); }
-.rm-source {
-  background: none; border: none;
-  color: var(--dim2); font-size: 18px; cursor: pointer;
-  float: right; margin-top: -4px;
-  line-height: 1;
-}
-.rm-source:hover { color: var(--accent); }
-
 /* ======= COLLAPSIBLE SOURCES ======= */
 .sources-toggle {
   display: inline-flex;
@@ -1284,7 +1149,7 @@ footer {
   </div>
   <div class="article-page-inner">
     <div class="article-modal-header">
-      <button class="article-page-back" onclick="closeArticlePage()">← DISPATCH</button>
+      <button class="article-page-back" onclick="closeArticlePage()">← DISPATCHES</button>
       <button class="article-modal-close" onclick="closeArticlePage()" title="Close">✕</button>
     </div>
     <div class="article-page-masthead">
@@ -1312,7 +1177,7 @@ footer {
 <div class="masthead">
   <div class="masthead-rule"></div>
   <div class="masthead-label">Sultan Aben — Independent Researcher</div>
-  <div class="masthead-title">DISPATCH</div>
+  <div class="masthead-title">AUGUR</div>
   <div class="masthead-meta">
     <!-- desktop spans -->
     <span class="meta-desktop"><span class="live-indicator"></span> Live updates</span>
@@ -1366,7 +1231,7 @@ footer {
           <line x1="8.7" y1="8.7" x2="12" y2="12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
         </svg>
       </span>
-      <input type="text" id="search-input" placeholder="SEARCH DISPATCHES..." onkeydown="if(event.key==='Enter')commitSearch()" oninput="onSearchType(this.value)" onfocus="moveCursorToEnd(this)" autocomplete="off" spellcheck="false">
+      <input type="text" id="search-input" placeholder="SEARCH DISPATCHES..." onkeydown="if(event.key==='Enter'){commitSearch();this.blur();}" oninput="onSearchType(this.value)" onfocus="moveCursorToEnd(this)" autocomplete="off" spellcheck="false">
       <button class="search-clear" id="search-clear" onclick="clearSearch()">×</button>
     </div>
     <div class="search-tag-row">
@@ -1475,65 +1340,12 @@ footer {
 </div>
 
 <footer>
-  <div class="footer-title">DISPATCH</div>
+  <div class="footer-title">AUGUR</div>
   <div class="footer-sub">Sultan Aben — Independent Researcher</div>
   <p class="footer-disclaimer">All material is for research and documentation purposes. Sources are cited directly. Confidence ratings reflect the analyst's assessment of corroboration quality, not certainty. Last updated: <span id="footer-time"></span></p>
 </footer>
 
-<button id="admin-toggle" onclick="toggleAdmin()">+ NEW DISPATCH</button>
 
-<div class="admin-panel" id="admin-panel">
-  <div class="admin-box">
-    <div class="admin-title">Publish New Dispatch</div>
-    <div class="admin-sub">NEW POST — PRIMARY SOURCE BLOG</div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Category</label>
-        <select id="a-category">
-          <option value="strike">Strikes</option>
-          <option value="geolocation">Geolocation</option>
-          <option value="analysis">Analysis</option>
-          <option value="breaking">Breaking</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Confidence Level</label>
-        <select id="a-confidence">
-          <option value="high">High — 2+ independent sources</option>
-          <option value="medium">Medium — single source or partial</option>
-          <option value="low">Low — unverified / developing</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Headline</label>
-      <input type="text" id="a-title" placeholder="e.g. IAF strike confirmed at Natanz facility via geolocated Telegram footage" />
-    </div>
-    <div class="form-group">
-      <label>Deck (subheadline / summary)</label>
-      <input type="text" id="a-deck" placeholder="One sentence summary of the finding..." />
-    </div>
-    <div class="form-group">
-      <label>Body</label>
-      <textarea id="a-body" style="min-height:120px" placeholder="Write your analysis here. Reference [SOURCE 1], [SOURCE 2] etc. to link your inline citations to the source cards below."></textarea>
-    </div>
-    <div class="form-group">
-      <label>Analyst Note (optional)</label>
-      <textarea id="a-note" style="min-height:60px" placeholder="Your own assessment or caveat..."></textarea>
-    </div>
-    <div class="form-group">
-      <label>Primary Sources</label>
-      <div class="source-rows" id="source-rows">
-        <!-- source rows added by JS -->
-      </div>
-      <button class="add-source-btn" onclick="addSourceRow()">+ Add Primary Source</button>
-    </div>
-    <div class="admin-actions">
-      <button class="btn-publish" onclick="publishPost()">PUBLISH DISPATCH</button>
-      <button class="btn-cancel" onclick="toggleAdmin()">CANCEL</button>
-    </div>
-  </div>
-</div>
 
 <script>
 // =========== DATA ===========
@@ -2855,10 +2667,33 @@ This strike location is distinct from Ukraine's established target in Novorossiy
 The assessed strike zone on the eastern shore sits directly over a confirmed Russian Navy installation — Military Unit 99608, 134th Fleet Support Vessels Group, at Ulitsa Sukhumskoye Shosse 47, Novorossiysk, confirmed on Google Maps at 44.7210°N, 37.8340°E. Multiple vessels are visible berthed at the eastern piers in current satellite imagery. The naval base was significantly expanded after Ukraine made Sevastopol untenable for the Black Sea Fleet; by early 2022 it was capable of hosting over 100 modern warships. The specific vessel or structure struck within the compound is unconfirmed pending post-strike satellite imagery, as is the strike type — @visionergeo described it as a missile strike.`,
   note: 'Camera bearing fixed by Yandex street panorama from Ulitsa Revolyutsii 1905 Goda 37 — azimuth 56.6° ENE. Panorama view matches all key terrain features in the strike footage: hillside profile, eastern port structures, and ridge line. Strike zone projected along that bearing at 4.0–4.5km places impact on the eastern shore port-industrial area. Specific structure unknown pending satellite imagery. Sheskharis terminal prior strike history: Nov 14 2025, Nov 25 2025 (US démarche re Chevron/CPC interests), Mar 2 2026 (6/7 loading arms destroyed, multiple warships hit).',
   sources: [
-    { platform: 'official', handle: 'OSINTLive / @visionergeo — 12:27 UTC: Novorossiysk under missile strike; footage shows smoke column over eastern shore across bay', quote: '', timestamp: '14 Mar 2026', url: 'https://t.me/OSINTLive/504311' },
+    { platform: 'telegram', handle: 'OSINTLive / @visionergeo — 12:27 UTC: Novorossiysk under missile strike; footage shows smoke column over eastern shore across bay', quote: '', timestamp: '14 Mar 2026', url: 'https://t.me/OSINTLive/504311' },
     { platform: 'official', handle: 'Yandex Maps panorama — Ulitsa Revolyutsii 1905 Goda 37, Novorossiysk; azimuth 56.636° ENE; terrain features match strike footage (hillside profile, eastern port structures, ridge line); confirms camera origin and strike bearing', quote: '', timestamp: 'Jul 2021', url: 'https://yandex.com/maps/970/novorossiysk/house/ulitsa_revolyutsii_1905_goda_37/Z04YcQBjSU0OQFpufXtwc3pjYw==/?l=sat%2Cstv%2Csta&ll=37.773439%2C44.712508&panorama%5Bair%5D=true&panorama%5Bdirection%5D=56.636003%2C-0.330542&panorama%5Bfull%5D=true&panorama%5Bid%5D=1299158672_776709115_23_1627460617&panorama%5Bpoint%5D=37.788444%2C44.691621&panorama%5Bspan%5D=39.598582%2C15.845121&z=16' },
     { platform: 'official', handle: 'Kyiv Independent — Sheskharis terminal strike history: Nov 2025 and Mar 2 2026; SBU confirmed; 6/7 loading arms damaged; US démarche re Chevron/CPC interests', quote: '', timestamp: '2 Mar 2026', url: 'https://kyivindependent.com/ukrainian-drones-reportedly-strike-novorossiysk-oil-terminal-in-southern-russia/' },
     { platform: 'official', handle: 'Maritime Executive — Mar 2 strike: Sheskharis terminal damaged, frigates Admiral Essen and Makarov hit; Black Sea Fleet last refuge at Novorossiysk', quote: '', timestamp: '4 Mar 2026', url: 'https://maritime-executive.com/article/ukrainian-strike-on-novorossiysk-also-damaged-russian-warships' }
+  ]
+},
+{
+  id: 69,
+  category: 'conflict',
+  confidence: 'high',
+  tags: ['Africa'],
+  date: '14 Mar 2026, 14:00 UTC',
+  title: 'ISIS-DRC raided DRC army barracks at the Muchacha mine in Ituri, then stormed the Chinese operation and burned the equipment. It is the first known ISIS attack specifically targeting Chinese economic infrastructure.',
+  deck: 'Islamic State Central Africa Province (ISIS-DRC/ADF) hit FARDC barracks guarding a Chinese-operated gold mine inside the Okapi Wildlife Reserve, then burned vehicles, equipment and worker living quarters at the site. The target — Kimia Mining\'s Muchacha complex — is an illegal semi-industrial Chinese operation on a UNESCO World Heritage Site.',
+  body: `ISIS-DRC, also known as the Allied Democratic Forces (ADF), attacked FARDC barracks assigned to guard the Muchacha mining site in Ituri Province, eastern DRC, then stormed the Chinese-operated gold mine itself. According to Aaron Zelin, a researcher at the Washington Institute and one of the leading Western analysts of ISIS affiliates, the group set fire to most of the vehicles and equipment inside the compound and burned the living quarters of the Chinese workers.
+
+The Muchacha Mining Complex sits inside the Okapi Wildlife Reserve — a UNESCO World Heritage Site in northeastern Ituri Province, near the borders with South Sudan and Uganda. Mining is illegal inside the reserve. The operation is run by Kimia Mining Investment Sarl, backed by Chinese businessman Kong Maohuai's MCC Resources, and holds a permit from the DRC Mining Cadastre that civil society organisations have repeatedly challenged. A 2021 UN Group of Experts report flagged the site specifically, noting semi-industrial dredging operations and the presence of FARDC troops guarding the mine — troops deployed there illegally, to protect a prohibited commercial operation. Congolese authorities seized 31 kg of gold from the mine later that same year. By 2022, 205 Congolese civil society organisations had called for Kimia's permits to be revoked. The DRC government renewed them anyway, through 2048.
+
+The attack is significant for two reasons. The first is tactical. ADF has been shifting westward into Ituri's forested interior to avoid joint FARDC-UPDF pressure under Operation Shujaa, which has targeted ADF's main camp in Mambasa territory. ACLED data shows ADF violence in Ituri grew from 11% of the group's total activity in 2020 to 40% by the end of 2024. Muchacha sits in that expanded operational area. The FARDC troops at the mine were also in a compromised position — deployed to protect an illegal operation, removed from normal chain of command accountability, and likely thin on the ground. They were a soft target.
+
+The second reason is strategic and genuinely new. ISIS-DRC has a long record of attacking Congolese civilians, FARDC positions, UN peacekeepers, and Christian communities. It does not have a record of attacking Chinese economic infrastructure. China has deep and largely uncontested commercial interests across the DRC's mineral belt — cobalt, coltan, gold — operating under arrangements that local populations broadly resent and that have repeatedly been documented displacing communities and polluting waterways. The Muchacha site specifically has a documented history of evicting artisanal miners who depended on the reserve, generating significant local grievance. Whether the ADF chose this target because of its symbolic value, because local grievance provided intelligence or facilitation, or simply because it was guarded by an isolated and illegally deployed military unit is not yet clear. What is clear is that a jihadist group has now demonstrated both the willingness and the capability to strike Chinese operations in central Africa. If that becomes a pattern, it introduces a new variable into China's calculus for protecting its extractive investments across a continent where it has very limited military presence.`,
+  note: 'Aaron Zelin (@azelin) is a senior fellow at the Washington Institute for Near East Policy and founder of Jihadology — the leading open-source tracker of ISIS affiliate activity globally. His characterisation of this as an "interesting" attack signals its novelty within the ISIS-DRC pattern. The Muchacha mine identity sourced from Okapi Wildlife Reserve Wikipedia article (citing 2021 UN Group of Experts report), Africa Defense Forum, and Mongabay. FARDC troops at the site were illegally deployed per the UN report — mining is prohibited inside the Okapi reserve. ADF westward shift into Ituri sourced from ACLED 2025 analysis. No wire service confirmation at time of writing — this is an early-report conflict dispatch.',
+  sources: [
+    { platform: 'official', handle: 'Aaron Y. Zelin / @azelin (Washington Institute) — ISIS-DRC hits DRC army barracks guarding Chinese-operated mining site; storms mine, burns vehicles, equipment, and Chinese worker living quarters', quote: '', timestamp: '13 Mar 2026', url: 'https://x.com/azelin/status/2032782211116654914' },
+    { platform: 'official', handle: 'Okapi Wildlife Reserve / Wikipedia (citing UN Group of Experts 2021) — Muchacha Mining Complex run by Kimia Mining Investment Sarl (Kong Maohuai / MCC Resources); mining illegal in reserve; FARDC troops guarding site illegally; 31kg gold seized 2021; permits renewed to 2048', quote: '', timestamp: '2021', url: 'https://en.wikipedia.org/wiki/Okapi_Wildlife_Reserve' },
+    { platform: 'official', handle: 'ACLED — ADF violence in Ituri grew from 11% to 40% of total 2020-2024; ADF shifted westward into forested Ituri to avoid Operation Shujaa pressure; ADF force estimated 1,000-1,500 fighters', quote: '', timestamp: '2025', url: 'https://acleddata.com/report/m23-rebels-take-hold-eastern-congo-islamic-state-capitalizing-chaos' },
+    { platform: 'official', handle: 'Africa Defense Forum / Mongabay — Kimia Mining at Muchacha site, southwestern Okapi reserve along Ituri River; UNESCO World Heritage Site on danger list since 1997; 205 Congolese civil society orgs called for permit revocation 2022', quote: '', timestamp: 'Jan 2025', url: 'https://adf-magazine.com/2025/01/drc-chinese-gold-mining-threatens-okapi-wildlife-reserve/' }
   ]
 }
 ];
@@ -3099,6 +2934,8 @@ function commitSearch() {
   if (value.length < 2) return;
   committedSearch = value;
   currentSearch = value;
+  // blur keyboard on mobile
+  if (input) input.blur();
   // close the bar
   const dropdown = document.getElementById('search-dropdown');
   const btn = document.getElementById('search-toggle');
@@ -3139,329 +2976,6 @@ function clearSearch() {
   renderPosts(currentFilter, '');
 }
 
-// =========== ADMIN ===========
-function toggleAdmin() {
-  const panel = document.getElementById('admin-panel');
-  panel.classList.toggle('open');
-  if (panel.classList.contains('open')) {
-    document.getElementById('source-rows').innerHTML = '';
-    sourceRowCount = 0;
-    addSourceRow();
-  }
-}
-
-function addSourceRow() {
-  sourceRowCount++;
-  const id = sourceRowCount;
-  const row = document.createElement('div');
-  row.className = 'source-row-item';
-  row.id = `sr-${id}`;
-  row.innerHTML = `
-    <button class="rm-source" onclick="document.getElementById('sr-${id}').remove()">×</button>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Platform</label>
-        <select id="s-plat-${id}">
-          <option value="telegram">Telegram</option>
-          <option value="twitter">X / Twitter</option>
-          <option value="facebook">Facebook</option>
-          <option value="official">Official Statement</option>
-          <option value="video">Video (YouTube/etc)</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Handle / Name</label>
-        <input type="text" id="s-handle-${id}" placeholder="@channel or account name" />
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Direct Quote / Caption</label>
-      <textarea id="s-quote-${id}" style="min-height:50px" placeholder="Paste the exact text of the post..."></textarea>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Timestamp</label>
-        <input type="text" id="s-time-${id}" placeholder="e.g. 09:07 UTC, 28 Feb 2026" />
-      </div>
-      <div class="form-group">
-        <label>URL / Link</label>
-        <input type="text" id="s-url-${id}" placeholder="https://..." />
-      </div>
-    </div>`;
-  document.getElementById('source-rows').appendChild(row);
-}
-
-function publishPost() {
-  const title = document.getElementById('a-title').value.trim();
-  const deck = document.getElementById('a-deck').value.trim();
-  const body = document.getElementById('a-body').value.trim();
-  const note = document.getElementById('a-note').value.trim();
-  const category = document.getElementById('a-category').value;
-  const confidence = document.getElementById('a-confidence').value;
-
-  if (!title || !body) { alert('Title and body are required.'); return; }
-
-  const sources = [];
-  document.querySelectorAll('.source-row-item').forEach(row => {
-    const id = row.id.replace('sr-', '');
-    const handle = document.getElementById(`s-handle-${id}`)?.value.trim();
-    const quote = document.getElementById(`s-quote-${id}`)?.value.trim();
-    const timestamp = document.getElementById(`s-time-${id}`)?.value.trim();
-    const url = document.getElementById(`s-url-${id}`)?.value.trim();
-    const platform = document.getElementById(`s-plat-${id}`)?.value;
-    if (handle || quote) sources.push({ platform, handle, quote, timestamp, url });
-  });
-
-  const now = new Date();
-  const dateStr = now.toUTCString().replace('GMT', 'UTC').slice(5, 22);
-
-  posts.push({
-    id: nextId++,
-    category, confidence,
-    date: dateStr,
-    title, deck, body, note, sources
-  });
-
-  toggleAdmin();
-  renderPosts('all');
-  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-  document.querySelector('nav a').classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// =========== ARTICLE MODAL ROUTING ===========
-function slugify(title) {
-  return title.toLowerCase()
-    .replace(/[\u2018\u2019\u201c\u201d"'.!?,;:()\[\]{}]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .slice(0, 60);
-}
-
-function openArticlePage(id) {
-  // On mobile, navigate to a full page instead of modal
-  if (window.innerWidth <= 520) {
-    history.pushState({ postId: id }, '', '?post=' + id);
-    renderMobileArticlePage(id);
-    return;
-  }
-  const p = posts.find(x => x.id === id);
-  if (!p) return;
-
-  const catLabel = { strike: 'STRIKE REPORT', geolocation: 'GEOLOCATION', analysis: 'ANALYSIS', breaking: '\u25cf BREAKING', conflict: 'CONFLICT REPORT' }[p.category] || p.category.toUpperCase();
-  const confLabel = { high: '\u25c6 HIGH CONFIDENCE', medium: '\u25c7 MEDIUM CONFIDENCE', low: '\u25cb LOW CONFIDENCE' }[p.confidence] || '';
-
-  const catColor = { analysis: 'var(--gold)', strike: 'var(--accent)', geolocation: 'var(--accent2)', breaking: 'var(--accent)', conflict: '#5a7a4a' }[p.category] || 'var(--gold)';
-  const inner = document.querySelector('.article-page-inner');
-  if (inner) inner.style.borderTop = `3px solid ${catColor}`;
-  const catClass = { analysis: 'analysis', geolocation: 'geo', breaking: 'breaking', conflict: 'conflict' }[p.category] || '';
-  const confClass = { high: 'conf-high', medium: 'conf-med', low: 'conf-low' }[p.confidence] || '';
-  document.getElementById('ap-category').className = `post-category ${catClass}`;
-  document.getElementById('ap-category').textContent = catLabel;
-  document.getElementById('ap-date').className = 'post-date';
-  document.getElementById('ap-date').textContent = p.date;
-  document.getElementById('ap-confidence').className = `post-confidence ${confClass}`;
-  document.getElementById('ap-confidence').textContent = confLabel;
-  document.getElementById('ap-title').textContent = p.title;
-  document.getElementById('ap-deck').className = 'post-deck';
-  document.getElementById('ap-deck').textContent = p.deck;
-
-  const bodyHtml = p.body.split('\n\n').map(para => para.startsWith('<') ? para : `<p>${para}</p>`).join('');
-  document.getElementById('ap-body').innerHTML = bodyHtml;
-
-  const noteEl = document.getElementById('ap-note');
-  noteEl.innerHTML = p.note ? `<div class="analyst-note" style="margin-top:28px">${p.note}</div>` : '';
-
-  const sourcesEl = document.getElementById('ap-sources');
-  sourcesEl.innerHTML = p.sources && p.sources.length ? `
-    <div class="sources-toggle open" onclick="toggleSources(this)" style="margin-top:24px">
-      <span class="sources-toggle-label">
-        <span class="sources-toggle-icon">\u25bc</span>
-        Sources <span class="sources-count">(${p.sources.length})</span>
-      </span>
-    </div>
-    <div class="sources-collapsible open">
-      <div class="sources-grid">
-        ${p.sources.map(s => `
-          <div class="source-card ${s.platform}">
-            <span class="source-platform ${s.platform}">${s.platform.toUpperCase()}</span>
-            <div class="source-content">
-              <div class="source-handle">${s.handle}</div>
-              <div class="source-quote">"${s.quote}"</div>
-              ${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" class="source-url">\u2197 ${s.url}</a>` : ''}
-            </div>
-            <div class="source-timestamp">${s.timestamp}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>` : '';
-
-  const tagsEl = document.getElementById('ap-tags');
-  tagsEl.innerHTML = p.tags && p.tags.length
-    ? `<div class="post-tags" style="margin-top:20px">${p.tags.map(t => `<span class="post-tag">${t}</span>`).join('')}</div>`
-    : '';
-
-  const slug = slugify(p.title);
-  history.pushState({ postId: id, slug }, '', `#${slug}`);
-
-  const modal = document.getElementById('article-page');
-  modal.classList.add('visible');
-  modal.querySelector('.article-page-inner').scrollTop = 0;
-  document.body.classList.add('modal-open');
-  // Start lava after a short delay so modal open animation plays first
-  setTimeout(() => window.startModalLava && window.startModalLava(), 280);
-}
-
-function renderMobileArticlePage(id) {
-  const p = posts.find(x => x.id === id);
-  if (!p) return;
-
-  const catLabel = { strike: 'STRIKE REPORT', geolocation: 'GEOLOCATION', analysis: 'ANALYSIS', breaking: '● BREAKING', conflict: 'CONFLICT REPORT' }[p.category] || p.category.toUpperCase();
-  const confLabel = { high: '◆ HIGH CONFIDENCE', medium: '◇ MEDIUM CONFIDENCE', low: '○ LOW CONFIDENCE' }[p.confidence] || '';
-  const catClass = { analysis: 'analysis', geolocation: 'geo', breaking: 'breaking', conflict: 'conflict' }[p.category] || '';
-  const confClass = { high: 'conf-high', medium: 'conf-med', low: 'conf-low' }[p.confidence] || '';
-  const catColor = { analysis: 'var(--gold)', strike: 'var(--accent)', geolocation: 'var(--accent2)', breaking: 'var(--accent)', conflict: '#5a7a4a' }[p.category] || 'var(--gold)';
-
-  const bodyHtml = p.body.split('\n\n').map(para => para.startsWith('<') ? para : `<p>${para}</p>`).join('');
-  const noteHtml = p.note ? `<div class="analyst-note" style="margin-top:28px">${p.note}</div>` : '';
-  const tagsHtml = p.tags && p.tags.length ? `<div class="post-tags">${p.tags.map(t => `<span class="post-tag">${t}</span>`).join('')}</div>` : '';
-  const tagsCopyRow = `<div style="display:flex;align-items:flex-start;justify-content:space-between;margin-top:20px;gap:12px;"><div style="display:flex;flex-wrap:wrap;gap:6px;max-width:52%;">${tagsHtml ? p.tags.map(t=>`<span class="post-tag">${t}</span>`).join('') : ''}</div><button class="article-page-share" onclick="copyMobileArticleLink()" style="flex-shrink:0;align-self:flex-start;margin:0 !important;padding:6px 12px;line-height:1;display:inline-flex;align-items:center;">⧉ COPY LINK</button></div>`;
-  const sourcesHtml = p.sources && p.sources.length ? `
-    <div class="sources-toggle open" onclick="toggleSources(this)" style="margin-top:24px">
-      <span class="sources-toggle-label">
-        <span class="sources-toggle-icon">▼</span>
-        Sources <span class="sources-count">(${p.sources.length})</span>
-      </span>
-    </div>
-    <div class="sources-collapsible open">
-      <div class="sources-grid">
-        ${p.sources.map(s => `
-          <div class="source-card ${s.platform}">
-            <span class="source-platform ${s.platform}">${s.platform.toUpperCase()}</span>
-            <div class="source-content">
-              <div class="source-handle">${s.handle}</div>
-              <div class="source-quote">"${s.quote}"</div>
-              ${s.url ? `<a href="${s.url}" target="_blank" rel="noopener" class="source-url">↗ ${s.url}</a>` : ''}
-            </div>
-            <div class="source-timestamp">${s.timestamp}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>` : '';
-
-  // Build a clock string for top bar
-  const now = new Date();
-  const clockStr = now.toUTCString().replace('GMT','UTC').slice(5,25);
-
-  const page = document.getElementById('mobile-article-page');
-  page.innerHTML = `
-    <div class="top-bar" style="justify-content:center;">
-      <span id="map-clock">${clockStr}</span>
-    </div>
-    <div class="masthead" style="cursor:pointer;" onclick="closeMobileArticlePage()">
-      <div class="masthead-rule"></div>
-      <div class="masthead-label">Sultan Aben — Independent Researcher</div>
-      <div class="masthead-title">DISPATCH</div>
-    </div>
-    <nav style="position:relative;">
-      <div style="flex:1; display:flex; align-items:center; padding:0 16px;">
-        <button onclick="closeMobileArticlePage()" style="background:none;border:none;color:rgba(255,255,255,0.7);font-family:var(--mono);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;padding:14px 0;">← BACK TO DISPATCHES</button>
-      </div>
-    </nav>
-    <div style="background:var(--paper); padding:28px 24px 28px; border-top:3px solid ${catColor};">
-      <div class="article-page-masthead">
-        <span class="post-category ${catClass}">${catLabel}</span>
-        <span class="post-date">${p.date}</span>
-        <span class="post-confidence ${confClass}">${confLabel}</span>
-      </div>
-      <h1 class="article-page-title">${p.title}</h1>
-      <div class="post-deck">${p.deck}</div>
-      <div class="article-page-body">${bodyHtml}</div>
-      ${noteHtml}
-      ${sourcesHtml}
-      ${tagsCopyRow}
-    </div>
-    <footer>
-      <div class="footer-title">DISPATCH</div>
-      <div class="footer-sub">Sultan Aben — Independent Researcher</div>
-      <p class="footer-disclaimer">All material is for research and documentation purposes. Sources are cited directly. Confidence ratings reflect the analyst's assessment of corroboration quality.</p>
-    </footer>
-  `;
-  page.style.display = 'block';
-  // iOS Safari fix: position:fixed on body prevents background scroll-through
-  document.body.style.overflow = 'hidden';
-  document.body.style.position = 'fixed';
-  document.body.style.width = '100%';
-  page.scrollTop = 0;
-  document.getElementById('article-page').classList.remove('visible');
-
-  // Keep clock ticking
-  const mapClockEl = document.getElementById('map-clock');
-  if (mapClockEl) {
-    const interval = setInterval(() => {
-      if (!document.getElementById('map-clock')) { clearInterval(interval); return; }
-      const n = new Date();
-      document.getElementById('map-clock').textContent = n.toUTCString().replace('GMT','UTC').slice(5,25);
-    }, 1000);
-  }
-}
-
-function closeMobileArticlePage() {
-  const page = document.getElementById('mobile-article-page');
-  page.style.display = 'none';
-  page.innerHTML = '';
-  document.body.style.overflow = '';
-  document.body.style.position = '';
-  document.body.style.width = '';
-  history.pushState(null, '', window.location.pathname);
-}
-
-function copyMobileArticleLink() {
-  navigator.clipboard.writeText(window.location.href).then(() => {
-    const btn = document.querySelector('#mobile-article-page .article-page-share');
-    if (btn) { btn.textContent = '⧉ COPIED'; setTimeout(() => { btn.textContent = '⧉ COPY LINK'; }, 2000); }
-  });
-}
-
-function closeArticlePage() {
-  const modal = document.getElementById('article-page');
-  const inner = modal.querySelector('.article-page-inner');
-  const backdrop = document.getElementById('article-page-backdrop');
-
-  window.stopModalLava && window.stopModalLava();
-  if (inner) inner.style.animation = 'modalSlideOut 0.28s cubic-bezier(0.4,0,0.8,1) forwards';
-  if (backdrop) backdrop.style.animation = 'backdropOut 0.38s cubic-bezier(0.4,0,0.6,1) forwards';
-
-  setTimeout(() => {
-    modal.classList.remove('visible');
-    document.body.classList.remove('modal-open');
-    if (inner) inner.style.animation = '';
-    if (backdrop) backdrop.style.animation = '';
-  }, 360);
-
-  history.pushState(null, '', window.location.pathname);
-}
-
-function copyArticleLink() {
-  const url = window.location.href;
-  navigator.clipboard.writeText(url).then(() => {
-    const btn = document.getElementById('ap-share-btn');
-    btn.textContent = '\u29c9 COPIED';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = '\u29c9 COPY LINK'; btn.classList.remove('copied'); }, 2000);
-  });
-}
-
-function copyPostLink(id, el) {
-  const p = posts.find(x => x.id === id);
-  const slug = p ? slugify(p.title) : 'post-' + id;
-  const url = window.location.origin + window.location.pathname + '#' + slug;
-  navigator.clipboard.writeText(url).then(() => {
-    el.textContent = '\u2713';
-    el.classList.add('copied');
-    setTimeout(() => { el.textContent = '\u29c9'; el.classList.remove('copied'); }, 2000);
-  });
-}
 
 window.addEventListener('popstate', (e) => {
   // Close mobile article page if open
@@ -3630,12 +3144,6 @@ function loadPosts() {
   } catch(e) {}
 }
 
-// Patch publishPost to save on each new post
-const _origPublish = publishPost;
-publishPost = function() {
-  _origPublish();
-  savePosts();
-};
 
 // =========== INIT ===========
 loadPosts();
