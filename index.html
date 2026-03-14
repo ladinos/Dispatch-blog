@@ -2934,13 +2934,10 @@ function commitSearch() {
   if (value.length < 2) return;
   committedSearch = value;
   currentSearch = value;
-  // blur keyboard on mobile
+  // blur keyboard on mobile to dismiss keyboard
   if (input) input.blur();
-  // close the bar
-  const dropdown = document.getElementById('search-dropdown');
-  const btn = document.getElementById('search-toggle');
-  if (dropdown) dropdown.classList.remove('open');
-  if (btn) btn.classList.remove('active');
+  // use closeSearchBar() so it also resets body overflow/scroll lock
+  closeSearchBar();
   document.removeEventListener('mousedown', outsideSearchClose);
   // render with results — they stay until explicitly cleared
   renderPosts(currentFilter, value);
@@ -2968,10 +2965,7 @@ function clearSearch() {
   if (input) input.value = '';
   const clearBtn = document.getElementById('search-clear');
   if (clearBtn) clearBtn.style.display = 'none';
-  const dropdown = document.getElementById('search-dropdown');
-  const btn = document.getElementById('search-toggle');
-  if (dropdown) dropdown.classList.remove('open');
-  if (btn) btn.classList.remove('active');
+  closeSearchBar();
   document.removeEventListener('mousedown', outsideSearchClose);
   renderPosts(currentFilter, '');
 }
