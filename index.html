@@ -1276,7 +1276,7 @@ footer {
 <body>
 
 <!-- =========== ARTICLE MODAL =========== -->
-<div id="mobile-article-page" style="display:none; position:fixed; inset:0; z-index:400; background:var(--paper); overflow-y:auto; -webkit-overflow-scrolling:touch;"></div>
+<div id="mobile-article-page" style="display:none; position:fixed; inset:0; z-index:700; background:var(--paper); overflow-y:auto; -webkit-overflow-scrolling:touch;"></div>
 
 <div id="article-page">
   <div id="article-page-backdrop" onclick="closeArticlePage()">
@@ -2810,6 +2810,56 @@ That gasoline export ban is the number to watch. Russia exports gasoline to mana
     { platform: 'official', handle: 'The Ins.ru — Firepoint FP-1 drone: 120kg warhead, 1500km range, ~$55K per unit, ~60% of long-range strikes; repeat-strike tactic negates repairs; IEA forecast recovery after June 2026 not accounting for continued attacks', quote: '', timestamp: '3 Nov 2025', url: 'https://theins.ru/en/politics/286463' },
     { platform: 'official', handle: 'Rigzone / Bloomberg — Afipsky January 21 2026 strike; 9.1M ton/year capacity figure (Russian authorities); last confirmed hit December 2025 before Jan 21', quote: '', timestamp: '21 Jan 2026', url: 'https://www.rigzone.com/news/wire/russia_says_ukraine_attacked_afipsky_refinery_overnight-21-jan-2026-182818-article/' }
   ]
+},
+{
+  id: 67,
+  category: 'strike',
+  confidence: 'high',
+  tags: ['Iran', 'Middle East'],
+  date: '14 Mar 2026, 09:30 UTC',
+  title: 'Iran struck Fujairah overnight — the only major UAE oil export terminal outside the Strait of Hormuz. At least two storage tanks are burning. Oil loading is suspended.',
+  deck: 'Drones hit the oil terminal at the Port of Fujairah in the early hours of 14 March, triggering fires across at least two fuel storage tanks and forcing a partial suspension of oil loading operations. This is the second hit on Fujairah in eleven days. Iran is not just closing the Strait of Hormuz — it is closing the exits.',
+  body: `Footage from the overnight of 13–14 March confirms fires at oil storage facilities at the Port of Fujairah on the UAE's eastern coast. The Fujairah media office confirmed a fire broke out after debris fell during drone interception. Multiple sources report at least two tanks burning. Oil loading operations at the port have been partially suspended, Bloomberg confirmed. There are no reported casualties.
+
+Fujairah is not just another Gulf port. It sits outside the Strait of Hormuz on the Gulf of Oman — which is precisely why it exists. During the Iran–Iraq War in the 1980s, when the strait was mined and tankers were being targeted, the UAE began developing Fujairah specifically as an exit ramp. The Abu Dhabi–Fujairah Habshan pipeline, with a capacity of around 2 million barrels per day, was built so that UAE crude could reach export markets even if the strait closed entirely. The Fujairah Oil Industry Zone today holds nearly 70 million barrels of petroleum product storage capacity across 15 major tank farm complexes operated by Vopak, VTTI, MENA, GPS, JSW and others. It is the world's second-largest bunkering hub. Abu Dhabi National Oil Company is also constructing the world's largest underground oil storage facility there, adding a further 42 million barrels of capacity. This is the infrastructure that was designed to insure the global oil market against a Hormuz closure — and Iran just hit it.
+
+This is the second strike on Fujairah in eleven days. On 3 March, debris from a downed drone triggered a fire at the terminal; JSW Infrastructure confirmed one of its 15 tanks sustained damage. Operations resumed on 6 March. The 14 March strike appears more direct and more damaging — footage shows multiple tanks burning simultaneously. Iran had explicitly warned following US strikes on Kharg Island that any attack on its energy infrastructure would be met with retaliatory strikes on US-linked regional energy facilities. Kharg handles roughly 90% of Iranian crude exports. The pattern is now clear: Hormuz de facto closed to normal commercial traffic, Fujairah struck twice, Salalah struck, Ras Tanura debris fire, Mussafah fuel terminal hit, QatarEnergy's Ras Laffan targeted. Iran is not randomly hitting Gulf infrastructure — it is systematically closing every export route that was built to bypass it.
+
+Brent crude rose above $104 per barrel following the strike, with analysts warning that a widening campaign against terminal infrastructure could push prices toward $200. The Strait of Hormuz carries roughly a fifth of all globally traded oil. Fujairah was the hedge against that chokepoint. The hedge is now on fire.`,
+  note: 'The Fujairah media office attribution — "fire caused by debris during interception" — is the standard UAE official framing that avoids directly attributing damage to Iran while not denying the attack. Türkiye Today, WANA, News.az and The Week all report the strike as confirmed with oil loading suspended. Bloomberg cited sources confirming partial suspension of oil loading. March 3 prior hit sourced from JSW Infrastructure confirmation and Al Jazeera. Habshan–Fujairah pipeline capacity and FOIZ storage figures from The National. Brent price from WANA.',
+  sources: [
+    { platform: 'telegram', handle: 'Supernova+ — 09:29 UTC: footage of Fujairah oil depot fire, UAE', quote: '', timestamp: '14 Mar 2026', url: 'https://t.me/supernova_plus/49531' },
+    { platform: 'telegram', handle: 'Supernova+ — 12:01 UTC: Iranian attack on oil terminal at Fujairah port reported overnight; fire at oil storage, at least two fuel tanks burning', quote: '', timestamp: '14 Mar 2026', url: 'https://t.me/supernova_plus/49536' },
+    { platform: 'official', handle: 'WANA — Port of Fujairah struck early 14 March; oil loading partially suspended; ~70M bbl storage across 15 complexes; Brent above $104; Iran warned retaliatory strikes on US-linked energy facilities after Kharg Island hit', quote: '', timestamp: '14 Mar 2026', url: 'https://wanaen.com/drone-strike-disrupts-operations-at-uaes-fujairah-port/' },
+    { platform: 'official', handle: 'The National — Fujairah and Salalah targeted as part of pattern closing Hormuz exit ramps; Habshan–Fujairah pipeline ~2M bpd; FOIZ second-largest bunkering hub; 26.4M tonnes general cargo 2025; grain terminals for landlocked Gulf states', quote: '', timestamp: '12 Mar 2026', url: 'https://www.thenationalnews.com/business/energy/2026/03/12/irans-attack-on-salahah-aims-to-close-hormuz-exit-ramps/' },
+    { platform: 'official', handle: 'Al Jazeera — March 3 prior Fujairah hit; JSW Infrastructure: one tank damaged, 465,000 m³ capacity complex; Vopak/VTTI pre-emptively suspended operations; operations resumed March 6', quote: '', timestamp: '4 Mar 2026', url: 'https://www.aljazeera.com/news/2026/3/4/which-oil-and-gas-facilities-in-the-gulf-have-been-attacked' },
+    { platform: 'official', handle: 'The Week / Bloomberg — oil loading partially suspended confirmed; no injuries; UAE MOD: 27 drones and 7 ballistic missiles in latest wave; cumulative total 1,567 drones and 285 ballistic missiles', quote: '', timestamp: '14 Mar 2026', url: 'https://www.theweek.in/news/middle-east/2026/03/14/uaes-fujairah-port-partially-suspends-operations-after-a-fire-caused-by-drone-debris.html' }
+  ]
+},
+{
+  id: 68,
+  category: 'geolocation',
+  confidence: 'medium',
+  tags: ['Ukraine', 'Europe'],
+  date: '14 Mar 2026, 12:27 UTC',
+  title: 'Ukraine struck the eastern shore port-industrial zone of Novorossiysk. Footage geolocated to the Tsemesskaya Bay eastern bank — distinct from the Sheskharis terminal hit in prior strikes.',
+  deck: 'Footage of a strike on Novorossiysk posted at 12:27 UTC has been geolocated using a confirmed Yandex panorama bearing. The camera bearing is 56.6° ENE from a point at 44.6916°N, 37.7884°E in southern Novorossiysk. The strike smoke along that bearing at 4.0–4.5km places the impact zone at the eastern shore port-industrial area — distinct from the Sheskharis terminal targeted in prior strikes.',
+  body: `The footage, posted by @visionergeo at 12:27 UTC on 14 March, shows a single white smoke column rising from the far shore of the bay. Three terrain features are visible in the background: the characteristic inverted-triangle cut of the Markotkhskiy hillside, two large white structures at the eastern port, and a long pale ridge line across the top of the hills.
+
+Those same three features were located independently using a Yandex street panorama from Ulitsa Revolyutsii 1905 Goda 37, southern Novorossiysk — a different vantage point but looking across the same bay toward the same eastern shore. The Yandex panorama matched all three: same hillside profile, same port structures, same ridge line. That confirmed the direction of filming. The panorama metadata gives the shooting point as 44.6916°N, 37.7884°E and the camera azimuth as 56.636° ENE — which is the bearing used to project the strike location.
+
+Projecting along bearing 56.636° from the panorama origin, the strike smoke in the footage — appearing as a column rising from low on the far shore — places the impact zone at approximately 44.711–44.714°N, 37.831–37.836°E at a distance of 4.0–4.5km. On satellite imagery this area corresponds to the eastern shore port-industrial zone: it includes naval vessel berths, logistics and warehouse infrastructure, and a Gazpromneft fuel station (АЗС №132). The specific structure struck is unconfirmed pending post-strike satellite imagery.
+
+This strike location is distinct from Ukraine's established target in Novorossiysk. The Sheskharis oil terminal — struck on 14 November 2025, 25 November 2025, and 1–2 March 2026 when six of seven loading arms were destroyed along with warships and air defence systems — sits on the western inner harbour and is not visible in this footage angle.
+
+The assessed strike zone on the eastern shore sits directly over a confirmed Russian Navy installation — Military Unit 99608, 134th Fleet Support Vessels Group, at Ulitsa Sukhumskoye Shosse 47, Novorossiysk, confirmed on Google Maps at 44.7210°N, 37.8340°E. Multiple vessels are visible berthed at the eastern piers in current satellite imagery. The naval base was significantly expanded after Ukraine made Sevastopol untenable for the Black Sea Fleet; by early 2022 it was capable of hosting over 100 modern warships. The specific vessel or structure struck within the compound is unconfirmed pending post-strike satellite imagery, as is the strike type — @visionergeo described it as a missile strike.`,
+  note: 'Camera bearing fixed by Yandex street panorama from Ulitsa Revolyutsii 1905 Goda 37 — azimuth 56.6° ENE. Panorama view matches all key terrain features in the strike footage: hillside profile, eastern port structures, and ridge line. Strike zone projected along that bearing at 4.0–4.5km places impact on the eastern shore port-industrial area. Specific structure unknown pending satellite imagery. Sheskharis terminal prior strike history: Nov 14 2025, Nov 25 2025 (US démarche re Chevron/CPC interests), Mar 2 2026 (6/7 loading arms destroyed, multiple warships hit).',
+  sources: [
+    { platform: 'official', handle: 'OSINTLive / @visionergeo — 12:27 UTC: Novorossiysk under missile strike; footage shows smoke column over eastern shore across bay', quote: '', timestamp: '14 Mar 2026', url: 'https://t.me/OSINTLive/504311' },
+    { platform: 'official', handle: 'Yandex Maps panorama — Ulitsa Revolyutsii 1905 Goda 37, Novorossiysk; azimuth 56.636° ENE; terrain features match strike footage (hillside profile, eastern port structures, ridge line); confirms camera origin and strike bearing', quote: '', timestamp: 'Jul 2021', url: 'https://yandex.com/maps/970/novorossiysk/house/ulitsa_revolyutsii_1905_goda_37/Z04YcQBjSU0OQFpufXtwc3pjYw==/?l=sat%2Cstv%2Csta&ll=37.773439%2C44.712508&panorama%5Bair%5D=true&panorama%5Bdirection%5D=56.636003%2C-0.330542&panorama%5Bfull%5D=true&panorama%5Bid%5D=1299158672_776709115_23_1627460617&panorama%5Bpoint%5D=37.788444%2C44.691621&panorama%5Bspan%5D=39.598582%2C15.845121&z=16' },
+    { platform: 'official', handle: 'Kyiv Independent — Sheskharis terminal strike history: Nov 2025 and Mar 2 2026; SBU confirmed; 6/7 loading arms damaged; US démarche re Chevron/CPC interests', quote: '', timestamp: '2 Mar 2026', url: 'https://kyivindependent.com/ukrainian-drones-reportedly-strike-novorossiysk-oil-terminal-in-southern-russia/' },
+    { platform: 'official', handle: 'Maritime Executive — Mar 2 strike: Sheskharis terminal damaged, frigates Admiral Essen and Makarov hit; Black Sea Fleet last refuge at Novorossiysk', quote: '', timestamp: '4 Mar 2026', url: 'https://maritime-executive.com/article/ukrainian-strike-on-novorossiysk-also-damaged-russian-warships' }
+  ]
 }
 ];
 let nextId = posts.length + 1;
@@ -3338,7 +3388,10 @@ function renderMobileArticlePage(id) {
     </footer>
   `;
   page.style.display = 'block';
+  // iOS Safari fix: position:fixed on body prevents background scroll-through
   document.body.style.overflow = 'hidden';
+  document.body.style.position = 'fixed';
+  document.body.style.width = '100%';
   page.scrollTop = 0;
   document.getElementById('article-page').classList.remove('visible');
 
@@ -3358,6 +3411,8 @@ function closeMobileArticlePage() {
   page.style.display = 'none';
   page.innerHTML = '';
   document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.width = '';
   history.pushState(null, '', window.location.pathname);
 }
 
