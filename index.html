@@ -86,23 +86,13 @@ body::before {
   margin-bottom: 10px;
 }
 .masthead-title {
-  /* FONT OPTIONS — uncomment one line to switch:
-  font-family: 'Cinzel', serif;              -- Roman inscription, severe, epigraphic
-  font-family: 'Cormorant Garamond', serif;  -- Current: refined high-contrast Garamond
-  font-family: 'Spectral', serif;            -- Dense editorial, Economist-like
-  font-family: 'Libre Baskerville', serif;   -- Institutional classic
-  font-family: 'Crimson Pro', serif;         -- Foreign Affairs-adjacent, sharp academic
-  font-family: 'IM Fell English', serif;     -- Archival, antiquarian, codex feel
-  font-family: 'Playfair Display', serif;    -- Original: decorative high-contrast
-  */
-  font-family: 'Cinzel', serif;
-  font-size: 60px;
+  font-family: var(--display);
+  font-size: 52px;
   font-weight: 900;
-  letter-spacing: 6px;
+  letter-spacing: -1px;
   line-height: 0.9;
   color: var(--ink);
   margin-bottom: 26px;
-  text-transform: uppercase;
 }
 .masthead-subtitle {
   font-family: var(--serif);
@@ -2924,6 +2914,35 @@ None of this means the frontline is about to collapse. The ISW analysts most fam
     { platform: 'official', handle: 'ISW / Critical Threats — February 26 2026: Starlink block cut Russian drone effectiveness 20-40% per Ukrainian 3rd Army Corps Commander Biletsky; Ukrainian forces retook territory near Pokrovsk, Lyman, Hulyaipole after block; Russian forces will not restore Starlink efficiency for 3-5 years', quote: '', timestamp: '26 Feb 2026', url: 'https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-february-26-2026' },
     { platform: 'official', handle: 'Russia Matters / Michael Kofman — "The ability of either side to achieve an operational breakthrough disappeared a long time ago"; 2025 "marked by struggle for advantage in the drone zone"; drone, mines, firepower now define the war more than armor and artillery', quote: '', timestamp: 'Jan 2026', url: 'https://www.russiamatters.org/news/russia-analytical-report/russia-analytical-report-dec-22-2025-jan-5-2026' }
   ]
+},
+{
+  id: 75,
+  category: 'strike',
+  confidence: 'medium',
+  tags: ['Iran', 'Middle East'],
+  date: '15 Mar 2026, 12:00 UTC',
+  title: 'Iraqi militia missile hits US Victoria Base. CRAM fails last-second intercept. The day before, a fibre-optic FPV drone flew reconnaissance into the base and struck a building. Both firsts.',
+  deck: 'A missile fired by Iranian-backed Iraqi militia forces struck Victoria Base at Baghdad International Airport. Footage shows the C-RAM system engaging and failing a last-second intercept. Separately, the preceding day saw what appears to be the first confirmed use of a fibre-optic FPV drone by Iraqi militia forces against a Western position — the pilot flew reconnaissance around the base perimeter before striking a building. US forces in Iraq have not faced this threat before.',
+  body: `A missile struck Victoria Base — the US military facility at Baghdad International Airport, formally Camp Victory — with footage from @nayaforiraq and @DDGeopolitics showing impact and fire at the installation. OSINTLive confirmed the strike. A Reddit clip from r/CombatFootage captures the C-RAM (Counter-Rocket, Artillery and Mortar) system engaging at the last second and failing to intercept. The C-RAM, which uses a Phalanx close-in weapons system firing 20mm rounds at a rate of approximately 4,500 rounds per minute, has been the primary terminal defence for US bases in Iraq throughout the campaign. Its failure here is operationally significant — not because C-RAM is ineffective by design, but because it is a last resort, and last-resort interception of incoming missiles at close range has a non-trivial failure rate regardless of system quality.
+
+<div data-strike-map="victoria-75"></div>
+
+The more analytically significant event preceded the missile by approximately 24 hours. Footage from @nayaforiraq shows what appears to be the first confirmed use of a fibre-optic FPV drone by Iraqi militia forces against a Western military installation. The drone flew a reconnaissance pass around the base perimeter before striking a building inside the compound. This is a meaningful capability threshold. Fibre-optic FPV drones communicate through a physical tether rather than radio signals, making them immune to electronic warfare jamming systems — the primary countermeasure US forces have deployed against FPV drones in Iraq. The drone cannot be spoofed, frequency-jammed, or GPS-denied. It can only be physically intercepted or shot down.
+
+The footage also reveals the operator's inexperience. The pilot is visibly using "ANGL" flight mode — an assisted angle mode common in entry-level FPV software that provides automatic levelling assistance, typically used by novice pilots. In the Ukraine theatre, experienced FPV operators fly in full manual mode for maximum speed and manoeuvrability. ANGL mode produces the slower, slightly floaty flight profile visible in the footage. The strike still connected. The significance is not where the operator is now — it is where the trajectory of this capability leads. An ANGL-mode pilot flying a fibre-optic drone into a US base today is the equivalent of the first crude Shahed strikes on Ukraine in 2022. Ukraine is now running fibre-optic drones operated by highly trained pilots at industrial scale. The learning curve from first use to operational proficiency has historically been measured in months.
+
+US forces in Iraq are not prepared for this threat in the way Ukrainian forces are. The entire US counter-drone posture in the region has been built around electronic warfare — jamming, spoofing, GPS denial — against radio-frequency drones. Ukraine learned that EW-centric defence fails against fibre-optic drones and had to develop physical intercept doctrines: interceptor drones, mobile gun teams, layered detection. That adaptation took time and combat experience under fire. The militia forces in Iraq have now demonstrated they possess the hardware. The question is how quickly the operational knowledge transfers — and whether it transfers from the Ukraine theatre, where fibre-optic doctrine is most advanced, through Iranian channels to Iraqi proxies. Russia has been sharing drone tactics with Iran throughout this conflict. The pipeline is open.
+
+Victoria Base is not a hardened forward operating base — it is a logistics and support facility co-located with a major international airport, in the middle of a capital city, with a dense surrounding population that constrains the defensive perimeter and limits physical intercept options. The C-RAM failure and the fibre-optic reconnaissance strike on consecutive days suggest these militia forces are probing Victoria Base systematically — testing defences, adjusting approach vectors, escalating munition size. That pattern, if it continues, points toward a more serious strike than either of these two incidents.`,
+  note: 'Confidence medium — strike confirmed by multiple Telegram sources and footage. C-RAM failure visible in Reddit r/CombatFootage clip. US casualty figures not confirmed at time of writing; fire reported at base. Fibre-optic FPV identification based on footage analysis — the absence of radio frequency signatures and the specific flight characteristics visible in the @nayaforiraq clip are consistent with fibre-optic operation, but cannot be confirmed without technical debris analysis. "ANGL" flight mode identification is from visible HUD/OSD overlay in the drone footage. The claim that this is the first confirmed fibre-optic FPV use against Western forces in Iraq is assessed from open-source record — there may be unconfirmed prior instances.',
+  sources: [
+    { platform: 'telegram', handle: '@nayaforiraq/60146 — footage of missile impact and fire at Victoria Base, Baghdad', quote: '', timestamp: '15 Mar 2026', url: 'https://t.me/nayaforiraq/60146' },
+    { platform: 'telegram', handle: '@nayaforiraq/60158 — follow-up footage, Victoria Base strike', quote: '', timestamp: '15 Mar 2026', url: 'https://t.me/nayaforiraq/60158' },
+    { platform: 'telegram', handle: '@DDGeopolitics/177757 — Victoria Base strike corroboration', quote: '', timestamp: '15 Mar 2026', url: 'https://t.me/DDGeopolitics/177757' },
+    { platform: 'official', handle: 'r/CombatFootage — C-RAM last-second failed intercept footage, Victoria Base', quote: '', timestamp: '15 Mar 2026', url: 'https://www.reddit.com/r/CombatFootage/comments/1ruubrv/cram_fails_to_make_last_second_intercept_baghdad/' },
+    { platform: 'telegram', handle: '@OSINTLive/505010 — Victoria Base strike confirmed, further reporting', quote: '', timestamp: '15 Mar 2026', url: 'https://t.me/OSINTLive/505010' },
+    { platform: 'telegram', handle: '@nayaforiraq/59788 — fibre-optic FPV drone reconnaissance and strike at Victoria Base, day prior; ANGL flight mode visible in OSD overlay', quote: '', timestamp: '14 Mar 2026', url: 'https://t.me/nayaforiraq/59788' }
+  ]
 }
 ];
 let nextId = posts.length + 1;
@@ -3021,6 +3040,8 @@ function renderPosts(filter = 'all', query = '') {
       ? highlight('NSA Bahrain struck on day one. Impact geolocated to an AN/GSC-52 SATCOM terminal inside the base perimeter. Three footage angles, independently verified.', activeQuery)
       : p.id === 70
       ? highlight('Ukraine struck a missile depot for air defence systems in Dovzhansk, occupied Luhansk. 40km from the front. The short range is the point.', activeQuery)
+      : p.id === 75
+      ? highlight('Iraqi militia missile hits Victoria Base. CRAM fails last-second intercept. The day before, a fibre-optic FPV drone flew recon into the base and struck a building. Both firsts.', activeQuery)
       : highlight(p.title, activeQuery);
     const displayDeck = highlight(p.deck, activeQuery);
     const sourcesHtml = p.sources && p.sources.length ? `
@@ -3058,10 +3079,10 @@ function renderPosts(filter = 'all', query = '') {
         <span class="post-confidence ${confClass}">${confLabel}</span>
 
       </div>
-      ${p.id === 66 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="afipsky-66"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 67 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="fujairah-67"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 68 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="novorossiysk-68"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 65 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="adikong-65"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 58 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="tehran-58"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 52 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="salalah-52"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 48 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="mosul-48"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 33 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="mehrabad-33"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 13 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="akrotiri-13"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 9 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="campdelapaix-9"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 18 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="incirlik-18"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 23 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="erbil-23"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 24 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="nakhchivan-24"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 28 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="beirut-28"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 36 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="dubai-36"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 5 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="bahrain-5"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 70 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="dovzhansk-70"><div class="strike-map-loading">Loading map…</div></div>' : ''}
+      ${p.id === 66 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="afipsky-66"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 67 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="fujairah-67"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 68 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="novorossiysk-68"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 65 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="adikong-65"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 58 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="tehran-58"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 52 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="salalah-52"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 48 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="mosul-48"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 33 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="mehrabad-33"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 13 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="akrotiri-13"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 9 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="campdelapaix-9"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 18 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="incirlik-18"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 23 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="erbil-23"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 24 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="nakhchivan-24"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 28 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="beirut-28"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 36 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="dubai-36"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 5 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="bahrain-5"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 70 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="dovzhansk-70"><div class="strike-map-loading">Loading map…</div></div>' : p.id === 75 ? '<div class="post-card-map-float strike-map-wrap" data-card-map="victoria-75"><div class="strike-map-loading">Loading map…</div></div>' : ''}
       <h3><a href="#post-${p.id}" onclick="openArticlePage(${p.id}); return false;">${displayTitle}</a></h3>
       <div class="post-deck">${displayDeck}</div>
-      ${p.id === 66 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="afipsky-66"></div>' : p.id === 67 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="fujairah-67"></div>' : p.id === 68 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="novorossiysk-68"></div>' : p.id === 65 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="adikong-65"></div>' : p.id === 58 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="tehran-58"></div>' : p.id === 52 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="salalah-52"></div>' : p.id === 48 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="mosul-48"></div>' : p.id === 33 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="mehrabad-33"></div>' : p.id === 13 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="akrotiri-13"></div>' : p.id === 9 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="campdelapaix-9"></div>' : p.id === 18 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="incirlik-18"></div>' : p.id === 23 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="erbil-23"></div>' : p.id === 24 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="nakhchivan-24"></div>' : p.id === 28 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="beirut-28"></div>' : p.id === 36 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="dubai-36"></div>' : p.id === 5 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="bahrain-5"></div>' : p.id === 70 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="dovzhansk-70"></div>' : ''}
+      ${p.id === 66 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="afipsky-66"></div>' : p.id === 67 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="fujairah-67"></div>' : p.id === 68 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="novorossiysk-68"></div>' : p.id === 65 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="adikong-65"></div>' : p.id === 58 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="tehran-58"></div>' : p.id === 52 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="salalah-52"></div>' : p.id === 48 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="mosul-48"></div>' : p.id === 33 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="mehrabad-33"></div>' : p.id === 13 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="akrotiri-13"></div>' : p.id === 9 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="campdelapaix-9"></div>' : p.id === 18 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="incirlik-18"></div>' : p.id === 23 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="erbil-23"></div>' : p.id === 24 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="nakhchivan-24"></div>' : p.id === 28 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="beirut-28"></div>' : p.id === 36 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="dubai-36"></div>' : p.id === 5 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="bahrain-5"></div>' : p.id === 70 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="dovzhansk-70"></div>' : p.id === 75 ? '<div class="post-card-map-after-deck" style="display:none" data-card-map-after="victoria-75"></div>' : ''}
       <div class="post-body">${bodyHtml}</div>
       ${noteHtml}
       ${sourcesHtml}
@@ -3385,7 +3406,8 @@ function openArticlePage(id) {
       const isDubai = p.id === 36;
       const isBahrain = p.id === 5;
       const isDovzhansk = p.id === 70;
-      const initFn = isFujairah ? window._initFujairahMap : isNovo ? window._initNovorossiyskMap : isAdikong ? window._initAdikongMap : isTehran ? window._initTehranMap : isSalalah ? window._initSalalahMap : isMosul ? window._initMosulMap : isMehrabad ? window._initMehrabadMap : isAkrotiri ? window._initAkrotiriMap : isCampDeLaPaix ? window._initCampDeLaPaixMap : isIncirlik ? window._initIncirlikMap : isErbil ? window._initErbilMap : isNakhchivan ? window._initNakhchivanMap : isBeirut ? window._initBeirutMap : isDubai ? window._initDubaiMap : isBahrain ? window._initBahrainMap : isDovzhansk ? window._initDovzhanskMap : window._initAfipskyMap;
+      const isVictoria = p.id === 75;
+      const initFn = isFujairah ? window._initFujairahMap : isNovo ? window._initNovorossiyskMap : isAdikong ? window._initAdikongMap : isTehran ? window._initTehranMap : isSalalah ? window._initSalalahMap : isMosul ? window._initMosulMap : isMehrabad ? window._initMehrabadMap : isAkrotiri ? window._initAkrotiriMap : isCampDeLaPaix ? window._initCampDeLaPaixMap : isIncirlik ? window._initIncirlikMap : isErbil ? window._initErbilMap : isNakhchivan ? window._initNakhchivanMap : isBeirut ? window._initBeirutMap : isDubai ? window._initDubaiMap : isBahrain ? window._initBahrainMap : isDovzhansk ? window._initDovzhanskMap : isVictoria ? window._initVictoriaMap : window._initAfipskyMap;
       if (!initFn) return;
       const float = document.getElementById('ap-map-float');
       const afterDeck = document.getElementById('ap-map-after-deck');
@@ -3514,7 +3536,7 @@ function renderMobileArticlePage(id) {
   if (p.body.includes('data-strike-map')) {
     const mobileMapEl = page.querySelector('#mobile-ap-map');
     if (mobileMapEl) {
-      const initFn = p.id === 67 ? window._initFujairahMap : p.id === 68 ? window._initNovorossiyskMap : p.id === 65 ? window._initAdikongMap : p.id === 58 ? window._initTehranMap : p.id === 52 ? window._initSalalahMap : p.id === 48 ? window._initMosulMap : p.id === 33 ? window._initMehrabadMap : p.id === 13 ? window._initAkrotiriMap : p.id === 9 ? window._initCampDeLaPaixMap : p.id === 18 ? window._initIncirlikMap : p.id === 23 ? window._initErbilMap : p.id === 24 ? window._initNakhchivanMap : p.id === 28 ? window._initBeirutMap : p.id === 36 ? window._initDubaiMap : p.id === 5 ? window._initBahrainMap : p.id === 70 ? window._initDovzhanskMap : window._initAfipskyMap;
+      const initFn = p.id === 67 ? window._initFujairahMap : p.id === 68 ? window._initNovorossiyskMap : p.id === 65 ? window._initAdikongMap : p.id === 58 ? window._initTehranMap : p.id === 52 ? window._initSalalahMap : p.id === 48 ? window._initMosulMap : p.id === 33 ? window._initMehrabadMap : p.id === 13 ? window._initAkrotiriMap : p.id === 9 ? window._initCampDeLaPaixMap : p.id === 18 ? window._initIncirlikMap : p.id === 23 ? window._initErbilMap : p.id === 24 ? window._initNakhchivanMap : p.id === 28 ? window._initBeirutMap : p.id === 36 ? window._initDubaiMap : p.id === 5 ? window._initBahrainMap : p.id === 70 ? window._initDovzhanskMap : p.id === 75 ? window._initVictoriaMap : window._initAfipskyMap;
       if (initFn) initFn(mobileMapEl);
     }
   }
@@ -4330,6 +4352,64 @@ renderPosts('all');
 
   // Expose Fujairah map init
   window._initFujairahMap = initFujairahMap;
+
+  // ── Victoria Base strike map ──────────────────────────────────────────
+  function initVictoriaMap(container) {
+    if (container.dataset.mapInited) return;
+    container.dataset.mapInited = '1';
+    var W=400,H=280;
+    if (!container.classList.contains('strike-map-wrap')) container.classList.add('strike-map-wrap');
+    container.innerHTML='<div class="strike-map-loading">Loading\u2026</div><svg id="vic-svg" viewBox="0 0 '+W+' '+H+'" style="display:none"></svg>';
+    function runMap(){(async function(){
+      var svgEl=container.querySelector('#vic-svg'),loadingEl=container.querySelector('.strike-map-loading'),svg=d3.select(svgEl);
+      var proj=d3.geoMercator().center([44.2,32.6]).scale(2200).translate([W/2,H/2]);
+      var path=d3.geoPath().projection(proj);
+      svg.append('rect').attr('width',W).attr('height',H).attr('fill','#e8e3d8');
+      svg.append('path').datum(d3.geoGraticule().step([2,2])()).attr('d',path).attr('fill','none').attr('stroke','#c8bfaa').attr('stroke-width',0.3).attr('opacity',0.4);
+      var world=await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json');
+      var countries=topojson.feature(world,world.objects.countries);
+      var borders=topojson.mesh(world,world.objects.countries,function(a,b){return a!==b;});
+      svg.append('g').selectAll('path').data(countries.features).join('path').attr('d',path).attr('fill','#f0ece3').attr('stroke','none');
+      svg.append('g').selectAll('path').data(countries.features.filter(function(d){return d.id==='368';})).join('path').attr('d',path).attr('fill','#cfc4ab').attr('stroke','none');
+      svg.append('path').datum(borders).attr('d',path).attr('fill','none').attr('stroke','#b0a896').attr('stroke-width',0.5);
+      loadingEl.style.display='none';svgEl.style.display='block';
+      // Origin: Najaf/Kufa militia belt — extended south for arc visibility
+      var oXY=proj([44.33,32.0]);
+      // Target: Victoria Base, Baghdad International Airport
+      var tXY=proj([44.234,33.258]);
+      // Control point bows arc slightly west
+      var cpXY=proj([43.7,32.7]);
+      var arcD='M'+oXY[0]+','+oXY[1]+' Q'+cpXY[0]+','+cpXY[1]+' '+tXY[0]+','+tXY[1];
+      var GREY='#a09080',RED='#8b2c0a',mono="'JetBrains Mono',monospace",SAMPLES=24;
+      svg.append('path').attr('d',arcD).attr('fill','none').attr('stroke','none').attr('id','vic-arc-ref');
+      svg.append('path').attr('d',arcD).attr('fill','none').attr('stroke',GREY).attr('stroke-width',1.2).attr('stroke-linecap','round');
+      var pl=svg.append('polyline').attr('stroke',RED).attr('stroke-width',1.2).attr('stroke-linecap','round').attr('stroke-linejoin','round').attr('fill','none').attr('opacity',0);
+      svg.append('circle').attr('cx',oXY[0]).attr('cy',oXY[1]).attr('r',3.5).attr('fill','none').attr('stroke',GREY).attr('stroke-width',0.8);
+      svg.append('circle').attr('cx',oXY[0]).attr('cy',oXY[1]).attr('r',1.5).attr('fill',GREY);
+      svg.append('circle').attr('cx',tXY[0]).attr('cy',tXY[1]).attr('r',11).attr('fill','none').attr('stroke',RED).attr('stroke-width',0.7).attr('opacity',0.22);
+      svg.append('circle').attr('cx',tXY[0]).attr('cy',tXY[1]).attr('r',7).attr('fill','none').attr('stroke',RED).attr('stroke-width',0.7).attr('opacity',0.50);
+      svg.append('circle').attr('cx',tXY[0]).attr('cy',tXY[1]).attr('r',2.5).attr('fill',RED);
+      // Baghdad
+      var bagXY=proj([44.396,33.315]);
+      svg.append('circle').attr('cx',bagXY[0]).attr('cy',bagXY[1]).attr('r',2).attr('fill','#a09585').attr('opacity',0.6);
+      svg.append('text').attr('x',bagXY[0]+5).attr('y',bagXY[1]+3).attr('font-family',mono).attr('font-size',9).attr('fill','rgba(26,22,18,0.38)').attr('text-anchor','start').text('Baghdad');
+      // Fallujah — west of Baghdad, clear of arc path
+      var falXY=proj([43.775,33.35]);
+      svg.append('circle').attr('cx',falXY[0]).attr('cy',falXY[1]).attr('r',2).attr('fill','#a09585').attr('opacity',0.6);
+      svg.append('text').attr('x',falXY[0]-5).attr('y',falXY[1]+3).attr('font-family',mono).attr('font-size',9).attr('fill','rgba(26,22,18,0.38)').attr('text-anchor','end').text('Fallujah');
+      svg.append('text').attr('x',W/2).attr('y',H-6).attr('font-family',mono).attr('font-size',7).attr('fill','rgba(26,22,18,0.32)').attr('text-anchor','middle').text('Illustrative only \u2014 not to scale');
+      requestAnimationFrame(function(){
+        var arcEl=container.querySelector('#vic-arc-ref'),arcLen=arcEl.getTotalLength();
+        var SEG=arcLen*0.45,ARRIVE=3500,DRAIN=Math.round(SEG/arcLen*ARRIVE),PAUSE=1200,CYCLE=ARRIVE+DRAIN+PAUSE,startTime=null;
+        function cp(t,h){var pts=[];for(var i=0;i<=SAMPLES;i++){var l=t+(h-t)*(i/SAMPLES),p=arcEl.getPointAtLength(Math.max(0,Math.min(arcLen,l)));pts.push(p.x+','+p.y);}return pts.join(' ');}
+        function frame(ts){if(!startTime)startTime=ts;var e=(ts-startTime)%CYCLE;if(e<ARRIVE){var t=e/ARRIVE,hl=t*arcLen,tl=Math.max(0,hl-SEG);pl.attr('points',cp(tl,hl)).attr('opacity','1');}else if(e<ARRIVE+DRAIN){var t2=(e-ARRIVE)/DRAIN,ts2=Math.max(0,arcLen-SEG),tl2=ts2+t2*(arcLen-ts2);pl.attr('points',cp(tl2,arcLen)).attr('opacity','1');}else{pl.attr('opacity','0');}requestAnimationFrame(frame);}
+        requestAnimationFrame(frame);
+      });
+    })();}
+    function loadLibs(cb){if(window.d3&&window.topojson){cb();return;}var s1=document.createElement('script');s1.src='https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js';s1.onload=function(){var s2=document.createElement('script');s2.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';s2.onload=cb;document.head.appendChild(s2);};document.head.appendChild(s1);}
+    loadLibs(runMap);
+  }
+  window._initVictoriaMap = initVictoriaMap;
 
   // ── Dovzhansk depot strike map ────────────────────────────────────────
   function initDovzhanskMap(container) {
@@ -5400,6 +5480,7 @@ renderPosts('all');
           else if (key === 'dubai-36') initDubaiMap(e.target);
           else if (key === 'bahrain-5') initBahrainMap(e.target);
           else if (key === 'dovzhansk-70') initDovzhanskMap(e.target);
+          else if (key === 'victoria-75') initVictoriaMap(e.target);
           else initAfipskyCardMap(e.target);
           io.unobserve(e.target);
         }
